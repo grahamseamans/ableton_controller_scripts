@@ -1,0 +1,54 @@
+{
+  "name": "ableton controller scripts dev",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "args": {
+      "TZ": "${localEnv:TZ:America/Los_Angeles}",
+      "CLAUDE_CODE_VERSION": "latest",
+      "GIT_DELTA_VERSION": "0.18.2",
+      "ZSH_IN_DOCKER_VERSION": "1.2.0"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "anthropic.claude-code",
+        "ms-python.python"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "python.defaultInterpreterPath": "/usr/bin/python3",
+        "terminal.integrated.defaultProfile.linux": "zsh",
+        "terminal.integrated.profiles.linux": {
+          "bash": {
+            "path": "bash",
+            "icon": "terminal-bash"
+          },
+          "zsh": {
+            "path": "zsh"
+          }
+        }
+      }
+    }
+  },
+  "remoteUser": "node",
+  "mounts": [
+    "source=${localWorkspaceFolderBasename}-bashhistory,target=/commandhistory,type=volume",
+    "source=${localWorkspaceFolderBasename}-claude-config,target=/home/node/.claude,type=volume",
+    "source=${localWorkspaceFolderBasename}-uvcache,target=/home/node/.cache/uv,type=volume"
+  ],
+  "containerEnv": {
+    "CLAUDE_CONFIG_DIR": "/home/node/.claude",
+    "POWERLEVEL9K_DISABLE_GITSTATUS": "true",
+    "XAI_API_KEY": "${localEnv:XAI_API_KEY}",
+    "MOUSER_API_KEY": "${localEnv:MOUSER_API_KEY}",
+    "DIGIKEY_CLIENT_ID": "${localEnv:DIGIKEY_CLIENT_ID}",
+    "DIGIKEY_CLIENT_SECRET": "${localEnv:DIGIKEY_CLIENT_SECRET}",
+    "DIGIKEY_USE_SANDBOX": "${localEnv:DIGIKEY_USE_SANDBOX}",
+    "WEATHER_LAT": "${localEnv:WEATHER_LAT}",
+    "WEATHER_LON": "${localEnv:WEATHER_LON}"
+  },
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=delegated",
+  "workspaceFolder": "/workspace",
+  "postAttachCommand": "cd ~/dotfiles && git pull --ff-only && ./install.sh"
+}
