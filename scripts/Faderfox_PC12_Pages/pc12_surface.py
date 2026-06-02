@@ -248,11 +248,11 @@ class PC12Surface(ControlSurface):
         self._performance_send_4_pot_row_d_elements = _build_per_track_encoder_row(
             ch, PC12_POT_ROW_D_CC_BASE, u"PC12_Perf_Send4_Pot"
         )
-        self._performance_filter_high_pass_pot_row_e_elements = _build_per_track_encoder_row(
-            ch, PC12_POT_ROW_E_CC_BASE, u"PC12_Perf_HighPass_Pot"
+        self._performance_filter_low_pass_pot_row_e_elements = _build_per_track_encoder_row(
+            ch, PC12_POT_ROW_E_CC_BASE, u"PC12_Perf_LowPass_Pot"
         )
-        self._performance_filter_low_pass_pot_row_f_elements = _build_per_track_encoder_row(
-            ch, PC12_POT_ROW_F_CC_BASE, u"PC12_Perf_LowPass_Pot"
+        self._performance_filter_high_pass_pot_row_f_elements = _build_per_track_encoder_row(
+            ch, PC12_POT_ROW_F_CC_BASE, u"PC12_Perf_HighPass_Pot"
         )
         self._performance_track_arm_green_button_elements = _build_per_track_button_row(
             ch, PC12_GREEN_BUTTON_CC_BASE, u"PC12_Perf_Arm_Button"
@@ -286,23 +286,23 @@ class PC12Surface(ControlSurface):
     def _build_eq_page_elements(self):
         ch = PC12_MIDI_CHANNEL_INDEX_EQ_PAGE
 
-        self._eq_band_1_gain_pot_row_a_elements = _build_per_track_encoder_row(
-            ch, PC12_POT_ROW_A_CC_BASE, u"PC12_EQ_Band1_Gain_Pot"
+        self._eq_band_3_frequency_pot_row_a_elements = _build_per_track_encoder_row(
+            ch, PC12_POT_ROW_A_CC_BASE, u"PC12_EQ_Band3_Freq_Pot"
         )
-        self._eq_band_1_frequency_pot_row_b_elements = _build_per_track_encoder_row(
-            ch, PC12_POT_ROW_B_CC_BASE, u"PC12_EQ_Band1_Freq_Pot"
+        self._eq_band_3_gain_pot_row_b_elements = _build_per_track_encoder_row(
+            ch, PC12_POT_ROW_B_CC_BASE, u"PC12_EQ_Band3_Gain_Pot"
         )
-        self._eq_band_2_gain_pot_row_c_elements = _build_per_track_encoder_row(
-            ch, PC12_POT_ROW_C_CC_BASE, u"PC12_EQ_Band2_Gain_Pot"
+        self._eq_band_2_frequency_pot_row_c_elements = _build_per_track_encoder_row(
+            ch, PC12_POT_ROW_C_CC_BASE, u"PC12_EQ_Band2_Freq_Pot"
         )
-        self._eq_band_2_frequency_pot_row_d_elements = _build_per_track_encoder_row(
-            ch, PC12_POT_ROW_D_CC_BASE, u"PC12_EQ_Band2_Freq_Pot"
+        self._eq_band_2_gain_pot_row_d_elements = _build_per_track_encoder_row(
+            ch, PC12_POT_ROW_D_CC_BASE, u"PC12_EQ_Band2_Gain_Pot"
         )
-        self._eq_band_3_gain_pot_row_e_elements = _build_per_track_encoder_row(
-            ch, PC12_POT_ROW_E_CC_BASE, u"PC12_EQ_Band3_Gain_Pot"
+        self._eq_band_1_frequency_pot_row_e_elements = _build_per_track_encoder_row(
+            ch, PC12_POT_ROW_E_CC_BASE, u"PC12_EQ_Band1_Freq_Pot"
         )
-        self._eq_band_3_frequency_pot_row_f_elements = _build_per_track_encoder_row(
-            ch, PC12_POT_ROW_F_CC_BASE, u"PC12_EQ_Band3_Freq_Pot"
+        self._eq_band_1_gain_pot_row_f_elements = _build_per_track_encoder_row(
+            ch, PC12_POT_ROW_F_CC_BASE, u"PC12_EQ_Band1_Gain_Pot"
         )
         self._eq_device_on_off_green_button_elements = _build_per_track_button_row(
             ch, PC12_GREEN_BUTTON_CC_BASE, u"PC12_EQ_OnOff_Button"
@@ -338,15 +338,15 @@ class PC12Surface(ControlSurface):
             ),
             _DirectParameterEncoderRowBinder(
                 live_song,
-                self._performance_filter_high_pass_pot_row_e_elements,
-                find_filter_eq_high_pass_frequency_parameter_for_track,
-                u"PerfHighPass",
+                self._performance_filter_low_pass_pot_row_e_elements,
+                find_filter_eq_low_pass_frequency_parameter_for_track,
+                u"PerfLowPass",
             ),
             _DirectParameterEncoderRowBinder(
                 live_song,
-                self._performance_filter_low_pass_pot_row_f_elements,
-                find_filter_eq_low_pass_frequency_parameter_for_track,
-                u"PerfLowPass",
+                self._performance_filter_high_pass_pot_row_f_elements,
+                find_filter_eq_high_pass_frequency_parameter_for_track,
+                u"PerfHighPass",
             ),
             _DirectParameterEncoderRowBinder(
                 live_song,
@@ -386,39 +386,39 @@ class PC12Surface(ControlSurface):
             ),
             _DirectParameterEncoderRowBinder(
                 live_song,
-                self._eq_band_1_gain_pot_row_a_elements,
-                find_tonal_eq_band_1_gain_parameter_for_track,
-                u"EQBand1Gain",
+                self._eq_band_3_frequency_pot_row_a_elements,
+                find_tonal_eq_band_3_frequency_parameter_for_track,
+                u"EQBand3Freq",
             ),
             _DirectParameterEncoderRowBinder(
                 live_song,
-                self._eq_band_1_frequency_pot_row_b_elements,
-                find_tonal_eq_band_1_frequency_parameter_for_track,
-                u"EQBand1Freq",
-            ),
-            _DirectParameterEncoderRowBinder(
-                live_song,
-                self._eq_band_2_gain_pot_row_c_elements,
-                find_tonal_eq_band_2_gain_parameter_for_track,
-                u"EQBand2Gain",
-            ),
-            _DirectParameterEncoderRowBinder(
-                live_song,
-                self._eq_band_2_frequency_pot_row_d_elements,
-                find_tonal_eq_band_2_frequency_parameter_for_track,
-                u"EQBand2Freq",
-            ),
-            _DirectParameterEncoderRowBinder(
-                live_song,
-                self._eq_band_3_gain_pot_row_e_elements,
+                self._eq_band_3_gain_pot_row_b_elements,
                 find_tonal_eq_band_3_gain_parameter_for_track,
                 u"EQBand3Gain",
             ),
             _DirectParameterEncoderRowBinder(
                 live_song,
-                self._eq_band_3_frequency_pot_row_f_elements,
-                find_tonal_eq_band_3_frequency_parameter_for_track,
-                u"EQBand3Freq",
+                self._eq_band_2_frequency_pot_row_c_elements,
+                find_tonal_eq_band_2_frequency_parameter_for_track,
+                u"EQBand2Freq",
+            ),
+            _DirectParameterEncoderRowBinder(
+                live_song,
+                self._eq_band_2_gain_pot_row_d_elements,
+                find_tonal_eq_band_2_gain_parameter_for_track,
+                u"EQBand2Gain",
+            ),
+            _DirectParameterEncoderRowBinder(
+                live_song,
+                self._eq_band_1_frequency_pot_row_e_elements,
+                find_tonal_eq_band_1_frequency_parameter_for_track,
+                u"EQBand1Freq",
+            ),
+            _DirectParameterEncoderRowBinder(
+                live_song,
+                self._eq_band_1_gain_pot_row_f_elements,
+                find_tonal_eq_band_1_gain_parameter_for_track,
+                u"EQBand1Gain",
             ),
         ]
 

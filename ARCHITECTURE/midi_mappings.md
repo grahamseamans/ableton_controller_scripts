@@ -16,8 +16,8 @@ and `manuals/PC12_Manual_V04.pdf`, "Factory settings" sections.
 | Control                | CC      | Live parameter                |
 |------------------------|---------|-------------------------------|
 | Fader 1–12             | 25–36   | Track 1–12 volume             |
-| Pot row A (1–12)       | 1–12    | Track 1–12 pan                |
-| Pot row B (1–12)       | 13–24   | (unbound — pots inert)        |
+| Pot row A (1–12)       | 1–12    | (unbound — top row inert)     |
+| Pot row B (1–12)       | 13–24   | Track 1–12 pan                |
 | Gray button 1–12 (row C) | 37–48 | Track 1–12 solo               |
 | Green button 1–12 (row D) | 49–60 | Track 1–12 mute              |
 | Encoder turn           | 61      | Scene select (proposed)       |
@@ -42,13 +42,29 @@ types manually on each track.
 | Pot row B (1–12)   | 13–24   | Track 1–12 send 2                                       |
 | Pot row C (1–12)   | 25–36   | Track 1–12 send 3                                       |
 | Pot row D (1–12)   | 37–48   | Track 1–12 send 4                                       |
-| Pot row E (1–12)   | 49–60   | Track 1–12 filter EQ Eight — band 1 (HP) frequency      |
-| Pot row F (1–12)   | 61–72   | Track 1–12 filter EQ Eight — band 2 (LP) frequency      |
+| Pot row E (1–12)   | 49–60   | Track 1–12 filter EQ Eight — band 2 (LP) frequency      |
+| Pot row F (1–12)   | 61–72   | Track 1–12 filter EQ Eight — band 1 (HP) frequency      |
 | Green button 1–12  | 73–84   | Track 1–12 record arm                                   |
 | Encoder turn       | 85      | (unbound — TBD)                                         |
 | Encoder push       | 86      | (unbound — TBD)                                         |
 
-### PC12 — Setup 2, Channel 2 — Compression page
+### PC12 — Setup 2, Channel 2 — EQ page
+
+Targets the **tonal EQ Eight** (the first `Eq8` in the track's device chain).
+Bands 1 (low shelf), 2 (bell), and 3 (high shelf) must be set to those filter
+types manually on each track.
+
+| Control            | CC      | Live parameter                                              |
+|--------------------|---------|-------------------------------------------------------------|
+| Pot row A (1–12)   | 1–12    | Track 1–12 tonal EQ Eight — band 3 (high shelf) frequency   |
+| Pot row B (1–12)   | 13–24   | Track 1–12 tonal EQ Eight — band 3 (high shelf) gain        |
+| Pot row C (1–12)   | 25–36   | Track 1–12 tonal EQ Eight — band 2 (bell)       frequency   |
+| Pot row D (1–12)   | 37–48   | Track 1–12 tonal EQ Eight — band 2 (bell)       gain        |
+| Pot row E (1–12)   | 49–60   | Track 1–12 tonal EQ Eight — band 1 (low shelf)  frequency   |
+| Pot row F (1–12)   | 61–72   | Track 1–12 tonal EQ Eight — band 1 (low shelf)  gain        |
+| Green button 1–12  | 73–84   | Track 1–12 tonal EQ Eight — device on/off                   |
+
+### PC12 — Setup 3, Channel 3 — Compression page
 
 | Control            | CC      | Live parameter                                    |
 |--------------------|---------|---------------------------------------------------|
@@ -59,22 +75,6 @@ types manually on each track.
 | Pot row E (1–12)   | 49–60   | Track 1–12 Compressor — knee                      |
 | Pot row F (1–12)   | 61–72   | Track 1–12 Compressor — output gain (makeup)      |
 | Green button 1–12  | 73–84   | Track 1–12 Compressor — device on/off             |
-
-### PC12 — Setup 3, Channel 3 — EQ page
-
-Targets the **tonal EQ Eight** (the first `Eq8` in the track's device chain).
-Bands 1 (low shelf), 2 (bell), and 3 (high shelf) must be set to those filter
-types manually on each track.
-
-| Control            | CC      | Live parameter                                              |
-|--------------------|---------|-------------------------------------------------------------|
-| Pot row A (1–12)   | 1–12    | Track 1–12 tonal EQ Eight — band 1 (low shelf)  gain        |
-| Pot row B (1–12)   | 13–24   | Track 1–12 tonal EQ Eight — band 1 (low shelf)  frequency   |
-| Pot row C (1–12)   | 25–36   | Track 1–12 tonal EQ Eight — band 2 (bell)       gain        |
-| Pot row D (1–12)   | 37–48   | Track 1–12 tonal EQ Eight — band 2 (bell)       frequency   |
-| Pot row E (1–12)   | 49–60   | Track 1–12 tonal EQ Eight — band 3 (high shelf) gain        |
-| Pot row F (1–12)   | 61–72   | Track 1–12 tonal EQ Eight — band 3 (high shelf) frequency   |
-| Green button 1–12  | 73–84   | Track 1–12 tonal EQ Eight — device on/off                   |
 
 ---
 

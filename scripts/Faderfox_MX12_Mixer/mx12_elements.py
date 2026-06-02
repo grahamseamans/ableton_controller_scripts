@@ -13,7 +13,7 @@ from .mx12_cc_layout import (
     MX12_NUMBER_OF_TRACKS,
     MX12_MIDI_CHANNEL_INDEX_SETUP_1,
     MX12_FADER_CC_BASE,
-    MX12_POT_ROW_A_PAN_CC_BASE,
+    MX12_POT_ROW_B_PAN_CC_BASE,
     MX12_GRAY_BUTTON_SOLO_CC_BASE,
     MX12_GREEN_BUTTON_MUTE_CC_BASE,
     MX12_ENCODER_TURN_CC,
@@ -39,22 +39,22 @@ class MX12Elements:
             name=u"MX12_Volume_Fader_Row",
         )
 
-        track_pan_pot_row_a_elements = [
+        track_pan_pot_row_b_elements = [
             EncoderElement(
                 MIDI_CC_TYPE,
                 midi_channel_index,
-                MX12_POT_ROW_A_PAN_CC_BASE + track_index,
+                MX12_POT_ROW_B_PAN_CC_BASE + track_index,
                 Live.MidiMap.MapMode.absolute,
-                name=u"MX12_Pan_Pot_Row_A_{}".format(track_index + 1),
+                name=u"MX12_Pan_Pot_Row_B_{}".format(track_index + 1),
             )
             for track_index in range(MX12_NUMBER_OF_TRACKS)
         ]
-        self.track_pan_pot_row_a_compound = CompoundElement(
-            control_elements=track_pan_pot_row_a_elements,
-            name=u"MX12_Pan_Pot_Row_A",
+        self.track_pan_pot_row_b_compound = CompoundElement(
+            control_elements=track_pan_pot_row_b_elements,
+            name=u"MX12_Pan_Pot_Row_B",
         )
 
-        track_solo_gray_button_elements = [
+        self.track_solo_gray_button_elements_list = [
             ButtonElement(
                 True,
                 MIDI_CC_TYPE,
@@ -64,12 +64,8 @@ class MX12Elements:
             )
             for track_index in range(MX12_NUMBER_OF_TRACKS)
         ]
-        self.track_solo_gray_button_compound = CompoundElement(
-            control_elements=track_solo_gray_button_elements,
-            name=u"MX12_Solo_Gray_Button_Row",
-        )
 
-        track_mute_green_button_elements = [
+        self.track_mute_green_button_elements_list = [
             ButtonElement(
                 True,
                 MIDI_CC_TYPE,
@@ -79,10 +75,6 @@ class MX12Elements:
             )
             for track_index in range(MX12_NUMBER_OF_TRACKS)
         ]
-        self.track_mute_green_button_compound = CompoundElement(
-            control_elements=track_mute_green_button_elements,
-            name=u"MX12_Mute_Green_Button_Row",
-        )
 
         self.scene_select_encoder = EncoderElement(
             MIDI_CC_TYPE,

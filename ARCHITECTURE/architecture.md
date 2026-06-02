@@ -44,8 +44,8 @@ else fights the hardware.
 
 ### PC12 — three setups, three pages
 - **Setup 1** (channel 1) = Performance
-- **Setup 2** (channel 2) = Compression
-- **Setup 3** (channel 3) = EQ
+- **Setup 2** (channel 2) = EQ
+- **Setup 3** (channel 3) = Compression
 
 User switches pages via PC12 setup mode: hold red shift + double-tap blue →
 turn encoder to 1/2/3 → hold red shift + tap blue once to exit.
@@ -157,8 +157,9 @@ Still to resolve at first run in Live (tracked in `SHORTCUTS.md`):
 - The compressor on/off and tonal-EQ on/off green buttons toggle
   `device.is_active` directly. This matches Live's device on/off LED in the
   GUI.
-- MX12 row B pots are not declared as MIDI elements at all. Their CCs (13–24
-  on channel 1) remain available to Live for ad-hoc Cmd+M user mapping.
+- MX12 row A pots (top row of pots, CCs 1–12 on channel 1) are not declared as
+  MIDI elements at all. They remain available to Live for ad-hoc Cmd+M user
+  mapping. Row B (second-from-top) controls track pan.
 
 ## Non-goals
 
