@@ -99,6 +99,21 @@ repaint the surface **when the playhead moves to a new step cell** (not on every
 Tuning → fixed colour map (4 colours). A full-surface redraw is cheap; an incremental
 diff (Launchpad95-style) is the fallback if needed.
 
+### Modal feedback principle (general)
+
+Whenever **holding a button changes what other pads do** (Length, Resolution, hold-step
+tuning/velocity, …), the affected pads **recolour** so the active mode is visibly obvious —
+the user should never wonder whether a hold "took." Because some pads carry different
+meanings in different modes (e.g. the leftmost bottom-row pads are spare instrument pads
+normally, the 4 tunings under hold-step, the 3 resolutions under hold-Resolution), each mode
+must use a **distinct, non-overlapping colour scheme**, so the current mode is unambiguous at
+a glance.
+
+This implies a small, **documented colour palette** — one colour family per function
+(instruments, patterns, steps-by-tuning, velocity levels, length, resolution) with no
+collisions between any two functions that can share a pad. The palette itself is a design
+artifact to be defined (lives in `lpx_led.py`); this principle governs it.
+
 ## Required Live setup (one-time template)
 
 1. One **MIDI track**, `MIDI To → <AlphaBase port>, Ch. 16`.
