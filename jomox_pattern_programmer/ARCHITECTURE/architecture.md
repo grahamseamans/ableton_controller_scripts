@@ -47,8 +47,9 @@ accepted trade for single-track simplicity.
   the slot. Patterns persist with the set. ✔ "stick around after saving."
 - **A step = presence/absence of a note** at the step's clip time, for the selected
   instrument, at that step's chosen tuning. Toggling a step adds/removes one note.
-- **Step time** = `step_index * step_resolution` (default 1/16). 32 steps fit the top half
-  with no paging.
+- **Step time** = `step_index * step_resolution`. **Default 1/16** ("always 16th for ease
+  of use"); changeable via the **Resolution** top-row button (hold → pick on bottom-left).
+  At 1/16, 32 steps = 2 bars. No paging at any resolution.
 - The script keeps a lightweight in-memory mirror of the clip's notes for fast LED
   redraws, but **the clip is the source of truth** (listen for external edits).
 
@@ -82,9 +83,11 @@ disconnect (`…0E 00 F7`). Full button map + LED facts in
   selected instrument is what the step grid edits. With **Preview** on, tapping auditions
   the instrument (routed via the armed track, Launchpad95-style — see below).
 - **Pattern select (bottom-right 4×4):** 16 clip slots on the track = 16 patterns.
-- **Hold-to-tune (the signature feature):** while a step pad is held, the bottom-left 4×4
-  becomes a **tuning picker** (4 options); tapping sets that step's note tuning, and the
-  step's colour changes to match. Release returns bottom-left to instrument select.
+- **Hold-to-edit a step (the signature gesture):** while a step pad is held, the bottom-left
+  4×4 becomes a **tuning picker** (4 options) and the **right column becomes a velocity
+  selector** (8 levels, quiet→loud bottom→top); tapping sets that step's tuning / velocity.
+  Step colour = tuning (brightness can show velocity). Release returns to normal. This is
+  one of three "hold a button → pick on a contextual surface" gestures (see Buttons).
 
 ## LED feedback
 
@@ -135,24 +138,42 @@ Live 12 remote script (`ableton.v2`/`v3` framework). Adapt proven patterns from
 Launchpad95 (`/tmp/launchpad95` during research; patterns summarised in chat) but use the
 modern Live 12 note API.
 
-## Round buttons (initial — refine in use)
+## Buttons — top row + right column
 
-Transport lives on another controller, so all 16 round buttons serve programming:
+All round buttons serve programming (transport is on another controller).
 
-- **Top row (CC 91–98):** step resolution (1/8·1/16·1/32), accent level, ghost overlay,
-  preview toggle, clear (lane; +Shift = pattern), undo (+Shift redo), nudge/rotate, Shift.
-- **Right column (CC 19–89):** mute / solo selected instrument, copy / paste / duplicate
-  pattern, + spare.
+**Top row (CC 91–98, left→right):**
+
+| # | CC | Button | Action |
+|---|----|--------|--------|
+| 1 | 91 | **Copy pattern** | copy the current clip |
+| 2 | 92 | **Paste pattern** | paste into the current slot |
+| 3 | 93 | **Length** | *hold + tap a step* → that step = the pattern's last step (loop length 1–32) |
+| 4 | 94 | **Resolution** | *hold* → bottom-left shows 1/8 · 1/16 · 1/32 (current lit); tap to set. Default 1/16 |
+| 5 | 95 | **Preview** | when on, tapping an instrument pad auditions it |
+| 6 | 96 | **Solo** | solo the selected instrument |
+| 7 | 97 | **Nudge ◀** | rotate the current lane one step left |
+| 8 | 98 | **Nudge ▶** | rotate one step right |
+
+**Right column (CC 19–89, bottom→top): velocity.** Sets the velocity of the **held step**
+(8 levels); with no step held, sets the default velocity for newly drawn steps. Whether 8
+levels are meaningful vs. just normal/accent depends on the AlphaBase velocity-response
+check (see Open decisions).
+
+The three "hold → pick on a contextual surface" gestures: **Length** (tap a step = the
+value), **Resolution** (pick on bottom-left), **a held step** (tuning on bottom-left,
+velocity on right column).
+
+Not on the surface (use the computer if needed): undo/redo, clear, mute.
 
 ## Open decisions / verify on hardware
 
-- **MIDI velocity** — does the AlphaBase respond to incoming velocity for dynamics/accent
-  in ch16 mode? (Its internal sequencer uses 63/127 — manual §10.3.1.) Drives the Accent button.
-- **Pattern length** — patterns can be shorter than 32 steps ("32 *max*"). Need a way to
-  set loop length per pattern (clip loop, or a length control) and reflect it on the grid
-  (Launchpad95 used a loop selector for this).
+- **MIDI velocity** — does the AlphaBase respond to incoming velocity for dynamics in ch16
+  mode? (Its internal sequencer uses 63/127 — manual §10.3.1.) Decides whether the side-row
+  velocity selector uses 8 levels or just normal/accent.
 - Confirm the 4 tuning deltas (0/6/12/18 semitones) feel musically useful per instrument.
-- Exact round-button assignments (above is a starting point).
+- "How do we *see* resolution" — resolved by the hold-Resolution → bottom-left picker
+  (current option lit); confirm it reads clearly in practice.
 - Whether to keep a Drum Rack on the track purely for naming/visual feedback in Live.
 
 ### Resolved

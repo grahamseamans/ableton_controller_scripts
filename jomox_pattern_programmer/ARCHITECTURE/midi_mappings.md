@@ -40,9 +40,15 @@ Instrument pad→idx (row-major, **left→right within a row, then downward** ro
 `41`=0,`42`=1,`43`=2,`44`=3, `31`=4…`34`=7, `21`=8…`24`=11, `11`=12,`12`=13,`13`=14,`14`=15.
 Pattern pad→slot uses the same scheme on cols 5–8 (`45`=0 … `18`=15).
 
-Round buttons (CC) — initial assignment, see architecture.md "Round buttons":
-top row `91–98` = step-res, accent, ghost, preview, clear, undo, nudge, Shift;
-right col `19–89` = mute, solo, copy, paste, duplicate, +spare.
+**Round buttons (CC):**
+- Top row `91`–`98` (left→right): Copy, Paste, **Length** (hold+tap step), **Resolution**
+  (hold→pick on bottom-left), Preview, Solo, Nudge◀, Nudge▶.
+- Right column `19`–`89` (bottom→top): **velocity** selector for the held/selected step
+  (8 levels; level count vs normal/accent gated on the AlphaBase velocity-response check).
+
+**Bottom-left 4×4 is contextual:** normally instrument select; while a **step** is held it
+shows tuning (4); while **Resolution** is held it shows 1/8·1/16·1/32. The top half stays
+the sequencer except that holding **Length** makes a step-tap set the loop end.
 
 ---
 
@@ -81,7 +87,8 @@ accent: **to verify**.
 3. User taps step `s` (rows 5–8). Script computes `note = 36 + i*4 + tuning(s)` and
    `time = s * step_resolution`, then toggles that note in the clip
    (`add_new_notes` / `remove_notes_extended`).
-4. Holding step `s` + tapping a tuning pad changes `tuning(s)` (rewrites the note's pitch).
+4. Holding step `s`: bottom-left sets `tuning(s)` (rewrites the note's pitch); right column
+   sets `velocity(s)`. Step colour = tuning.
 5. Live plays the clip out the track → channel 16 → AlphaBase. The script repaints LEDs
    (step colour = tuning; playhead = `clip.playing_position` mapped to a step cell).
 
