@@ -1,0 +1,99 @@
+# Knowledge-base sources — single source of truth.
+# Refresh everything with:  uv run --with pyyaml python update.py
+# Refresh some:             uv run --with pyyaml python update.py NAME ...
+#
+# type:
+#   pdf     single file via curl, timestamp-checked (skips unchanged).
+#           optional url_page + url_regex => auto-discover the latest URL from a page.
+#   wget    website mirror via `wget -N` (skips unchanged pages, fetches new/changed).
+#   git     git repo: shallow clone, or fetch+fast-forward if already present.
+#   gated   cannot be fetched automatically (login / anti-bot). Reported, not fetched.
+#   static  vendored file already committed; never fetched (listed for provenance).
+
+sources:
+  # ---------------- Ableton: the manual ----------------
+  - name: ableton_live12_manual
+    type: pdf
+    dest: ableton/live_manual/live12-manual-en.pdf
+    # auto-track the latest dated PDF the manual page points at:
+    url_page: https://www.ableton.com/en/manual/welcome-to-live/
+    url_regex: 'https://cdn-resources\.ableton\.com/resources/pdfs/live-manual/12/[^"]+/live12-manual-en\.pdf'
+
+  # ---------------- Ableton: scripting (Python remote scripts, all generations) ----
+  # Decompiled stock scripts. These carry _Framework (gen1), ableton.v2.control_surface
+  # (gen2), and ableton.v3 (gen4) inside them. Live 12 is PARTIAL (newer Python resists
+  # clean decompilation). No first-party docs exist for any of this.
+  - name: decompiled_live12
+    type: git
+    url: https://github.com/gluon/AbletonLive12_MIDIRemoteScripts.git
+    dest: ableton/scripting/midi_remote_scripts/Live12
+  - name: decompiled_live11
+    type: git
+    url: https://github.com/gluon/AbletonLive11_MIDIRemoteScripts.git
+    dest: ableton/scripting/midi_remote_scripts/Live11
+  # gluon publishes "Live10.1" (which covers Live 10) — there is no plain "Live10" repo.
+  - name: decompiled_live10_1
+    type: git
+    url: https://github.com/gluon/AbletonLive10.1_MIDIRemoteScripts.git
+    dest: ableton/scripting/midi_remote_scripts/Live10.1
+  - name: decompiled_live9
+    type: git
+    url: https://github.com/gluon/AbletonLive9_RemoteScripts.git
+    dest: ableton/scripting/midi_remote_scripts/Live9
+  - name: laidlaw42_py3_mirror
+    type: git
+    url: https://github.com/laidlaw42/ableton-live-midi-remote-scripts.git
+    dest: ableton/scripting/midi_remote_scripts/laidlaw42_py3
+
+  # Best unofficial reference for the Live Object Model + framework (all versions):
+  - name: structure_void_docs
+    type: wget
+    dest: ableton/scripting/midi_remote_api/structure_void_mirror
+    domains: midiremotescripts.structure-void.com
+    url: https://midiremotescripts.structure-void.com/
+
+  # Newest, separate system (JS/TS + Node). NOT a control-surface/MIDI system — in-DAW
+  # tools only. Docs are behind a beta login (centercode); cannot auto-fetch.
+  - name: extensions_sdk
+    type: gated
+    dest: ableton/scripting/extensions_sdk
+    landing: https://ableton.github.io/extensions-sdk/
+    note: >
+      Public page is a stub linking to ableton.centercode.com (beta login). Needs a
+      logged-in download. Low priority: Extensions can't do hardware/MIDI I/O, so it's
+      not usable for the controller projects — archive for reference only.
+
+  # ---------------- Ableton: Max for Live / Max ----------------
+  - name: max_for_live_docs
+    type: wget
+    dest: ableton/max_for_live/mirror
+    domains: docs.cycling74.com
+    include_dirs: /apiref,/userguide,/vignettes,/tutorials
+    urls:
+      - https://docs.cycling74.com/apiref/
+      - https://docs.cycling74.com/userguide/
+
+  # ---------------- Hardware ----------------
+  - name: launchpad_x_programmers_reference
+    type: pdf
+    dest: hardware/novation_launchpad_x/LaunchpadX_ProgrammersReference.pdf
+    url: https://fael-downloads-prod.focusrite.com/customer/prod/s3fs-public/downloads/Launchpad%20X%20-%20Programmers%20Reference%20Manual.pdf
+  - name: launchpad_x_user_guide
+    type: pdf
+    dest: hardware/novation_launchpad_x/LaunchpadX_UserGuide.pdf
+    url: https://fael-downloads-prod.focusrite.com/customer/prod/s3fs-public/downloads/Launchpad%20X%20User%20Guide.pdf
+  - name: jomox_alphabase_manual
+    type: pdf
+    dest: hardware/jomox_alphabase/AlphaBase_E.pdf
+    url: https://www.jomox.de/upload/manuals/AlphaBase_E.pdf
+  - name: jomox_alphabase_mk2_manual
+    type: pdf
+    dest: hardware/jomox_alphabase/AlphaBaseMk2_E.pdf
+    url: https://www.jomox.de/upload/manuals/AlphaBaseMk2_E.pdf
+
+  # Faderfox manuals/firmware/templates were migrated out of the faderfox_controller
+  # repo. They are vendored static assets (V04, not updated upstream); not auto-fetched.
+  - name: faderfox_assets
+    type: static
+    dest: hardware/faderfox
+    note: MX12/PC12 manuals, firmware .syx, quick-start PDFs, Universal templates.
