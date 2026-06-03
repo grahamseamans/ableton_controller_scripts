@@ -89,8 +89,9 @@ disconnect (`…0E 00 F7`). Full button map + LED facts in
 ## LED feedback
 
 Use the Launchpad X **batch RGB SysEx** (command `03`, up to 81 LEDs per message) to
-repaint the whole surface on each playhead tick and on edits. Tuning → fixed colour map
-(4 colours). This is cheap enough that a full redraw per tick is fine; an incremental
+repaint the surface **when the playhead moves to a new step cell** (not on every
+`playing_position` update — that fires far more often than steps change) and on edits.
+Tuning → fixed colour map (4 colours). A full-surface redraw is cheap; an incremental
 diff (Launchpad95-style) is the fallback if needed.
 
 ## Required Live setup (one-time template)
@@ -107,9 +108,11 @@ track only carries/forwards the MIDI clip on channel 16.
 ## "Play it in" / preview routing
 
 The script's MIDI output port is the **Launchpad** (for LEDs) — it cannot send to the
-AlphaBase directly. So preview/record-in works the Launchpad95 way: pads are configured to
-emit notes that **Live routes to the armed track**, which forwards them out channel 16 to
-the AlphaBase (and records them into the clip when armed). The script does not synthesise
+AlphaBase directly. So preview/record-in works the Launchpad95 way: the script forwards the
+correct keymap note (`36 + i*4 + tuning`) to the **armed track's input**, which sends it out
+channel 16 to the AlphaBase (and records it into the clip when armed). This requires the
+Launchpad's input port to be **Track-input enabled** in Live's MIDI prefs (or the script's
+note-forwarding path); confirm during implementation. The script does not synthesise
 playback itself.
 
 ## Proposed file structure (not yet built)
@@ -143,11 +146,20 @@ Transport lives on another controller, so all 16 round buttons serve programming
 
 ## Open decisions / verify on hardware
 
-- Does the AlphaBase respond to incoming **MIDI velocity** for dynamics/accent in ch16
-  mode? (Its internal sequencer uses 63/127 — manual §10.3.1.) Drives the Accent button.
+- **MIDI velocity** — does the AlphaBase respond to incoming velocity for dynamics/accent
+  in ch16 mode? (Its internal sequencer uses 63/127 — manual §10.3.1.) Drives the Accent button.
+- **Pattern length** — patterns can be shorter than 32 steps ("32 *max*"). Need a way to
+  set loop length per pattern (clip loop, or a length control) and reflect it on the grid
+  (Launchpad95 used a loop selector for this).
 - Confirm the 4 tuning deltas (0/6/12/18 semitones) feel musically useful per instrument.
 - Exact round-button assignments (above is a starting point).
 - Whether to keep a Drum Rack on the track purely for naming/visual feedback in Live.
+
+### Resolved
+
+- **Ch16 keymap reception** — confirmed (hardware): the AlphaBase receives the channel-16
+  keymap from external MIDI. (The manual's §10.3.3 RxTrig text mentions only ch 1–11 and
+  omits 16, but ch16 reception works in practice.)
 
 ## Non-goals
 

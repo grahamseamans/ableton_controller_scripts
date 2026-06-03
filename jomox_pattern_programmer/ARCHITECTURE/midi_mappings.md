@@ -32,11 +32,13 @@ Grid coordinates `row*10+col`, row 8 = top, row 1 = bottom.
 | Region | Grid pads (notes) | Function |
 |---|---|---|
 | Step sequencer (rows 8→5) | 81–88, 71–78, 61–68, 51–58 | 32 steps; step 1 = `81` (top-left), order left→right then top→down |
-| Instrument select (rows 4→1, cols 1–4) | 41–44, 31–34, 21–24, 11–14 | instrument idx 0–15 (0–10 used), reading top→down, left→right |
+| Instrument select (rows 4→1, cols 1–4) | 41–44, 31–34, 21–24, 11–14 | instrument idx 0–15 (0–10 used) |
 | Pattern select (rows 4→1, cols 5–8) | 45–48, 35–38, 25–28, 15–18 | clip slot 0–15 |
 
 Step→clip-time: `time = step_index * step_resolution` (default 1/16). step_index 0..31.
-Instrument pad→idx: top-left of the quad (`41`) = idx 0, …, bottom-right (`14`) = idx 15.
+Instrument pad→idx (row-major, **left→right within a row, then downward** row 4→row 1):
+`41`=0,`42`=1,`43`=2,`44`=3, `31`=4…`34`=7, `21`=8…`24`=11, `11`=12,`12`=13,`13`=14,`14`=15.
+Pattern pad→slot uses the same scheme on cols 5–8 (`45`=0 … `18`=15).
 
 Round buttons (CC) — initial assignment, see architecture.md "Round buttons":
 top row `91–98` = step-res, accent, ghost, preview, clear, undo, nudge, Shift;
@@ -66,7 +68,9 @@ right col `19–89` = mute, solo, copy, paste, duplicate, +spare.
 **Canonical formula:** `note = 36 + instrument_idx*4 + tuning`, `tuning ∈ {0,1,2,3}`.
 This lives in code in `alphabase_map.py` as the single source; nothing else hard-codes notes.
 
-Requires AlphaBase **RxTrig = on** (manual §10.3.3). Velocity→dynamics/accent: **to verify**.
+Requires AlphaBase **RxTrig = on** (manual §10.3.3). Ch16 keymap reception is **confirmed
+on hardware** (the §10.3.3 text only names ch 1–11, but ch16 works). Velocity→dynamics/
+accent: **to verify**.
 
 ---
 
