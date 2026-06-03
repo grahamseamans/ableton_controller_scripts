@@ -166,7 +166,7 @@ All round buttons serve programming (transport is on another controller).
 | 1 | 91 | **Copy pattern** | copy the current clip |
 | 2 | 92 | **Paste pattern** | paste into the current slot |
 | 3 | 93 | **Length** | *hold + tap a step* → that step = the pattern's last step (loop length 1–32) |
-| 4 | 94 | **Resolution** | *hold* → the 3 leftmost bottom-row pads show 1/8 · 1/16 · 1/32 (current lit); tap to set. Default 1/16 |
+| 4 | 94 | **Resolution** | *hold* → 3 pads in the **step area** (top half) show 1/8 · 1/16 · 1/32 (current lit); tap to set. Default 1/16 |
 | 5 | 95 | **Preview** | when on, tapping an instrument pad auditions it |
 | 6 | 96 | **Solo** | solo the selected instrument |
 | 7 | 97 | **Nudge ◀** | rotate the current lane one step left |
@@ -177,9 +177,13 @@ All round buttons serve programming (transport is on another controller).
 levels are meaningful vs. just normal/accent depends on the AlphaBase velocity-response
 check (see Open decisions).
 
-The three "hold → pick" gestures, unified on the **leftmost bottom-row pads** (which light
-up to signal the active mode): **Length** (tap a step = the value), **Resolution** (3 pads =
-1/8·1/16·1/32), **a held step** (4 pads = tuning, + velocity on the right column).
+The "hold → pick" gestures, by surface:
+- Hold a **top-row button**, then act on the **step area** (top half): **Length** (tap a step
+  = loop end), **Resolution** (tap one of 3 option-pads = 1/8·1/16·1/32).
+- Hold a **step**, then pick on the side surfaces: **tuning** on the 4 leftmost bottom-row
+  pads, **velocity** on the right column.
+
+All affected pads recolour while held (see Modal feedback principle).
 
 Not on the surface (use the computer if needed): undo/redo, clear, mute.
 
@@ -189,8 +193,9 @@ Not on the surface (use the computer if needed): undo/redo, clear, mute.
   mode? (Its internal sequencer uses 63/127 — manual §10.3.1.) Decides whether the side-row
   velocity selector uses 8 levels or just normal/accent.
 - Confirm the 4 tuning deltas (0/6/12/18 semitones) feel musically useful per instrument.
-- "How do we *see* resolution" — resolved: hold Resolution → the 3 leftmost bottom-row pads
-  light as 1/8·1/16·1/32 (current brightest); confirm it reads clearly in practice.
+- "How do we *see* resolution" — proposal: hold Resolution → 3 pads in the **step area** light
+  as 1/8·1/16·1/32 (current brightest); tap to pick. Kept in the sequencer area, same place as
+  Length (per the doc). Confirm it reads clearly; decide exactly which 3 step pads.
 - Whether to keep a Drum Rack on the track purely for naming/visual feedback in Live.
 
 ### Resolved

@@ -42,16 +42,15 @@ Pattern pad→slot uses the same scheme on cols 5–8 (`45`=0 … `18`=15).
 
 **Round buttons (CC):**
 - Top row `91`–`98` (left→right): Copy, Paste, **Length** (hold+tap step), **Resolution**
-  (hold→pick on the 3 leftmost bottom-row pads), Preview, Solo, Nudge◀, Nudge▶.
+  (hold→tap one of 3 option-pads in the step area), Preview, Solo, Nudge◀, Nudge▶.
 - Right column `19`–`89` (bottom→top): **velocity** selector for the held/selected step
   (8 levels; level count vs normal/accent gated on the AlphaBase velocity-response check).
 
-**Contextual option surface = leftmost pads of the bottom row** (notes 11–14, normally the
-spare instrument pads). They **light up to signal the active mode**: while a **step** is held
-they show the 4 tunings (tap = set the held step's pitch); while **Resolution** is held the
-leftmost 3 (`11`–`13`) show 1/8·1/16·1/32. The rest of the bottom-left quad stays instrument
-select; the top half stays the sequencer, except holding **Length** makes a step-tap set the
-loop end.
+**Hold-to-modify gestures, by surface** (all affected pads recolour while held):
+- Hold **Length** → tap a step in the top half = loop end (step position = length).
+- Hold **Resolution** → 3 pads in the top half show 1/8·1/16·1/32 (current lit); tap to set.
+- Hold a **step** → the 4 leftmost bottom-row pads (`11`–`14`, normally spare instrument pads)
+  show the 4 tunings (tap = set the held step's pitch); the right column shows velocity.
 
 ---
 
