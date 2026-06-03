@@ -83,11 +83,13 @@ disconnect (`…0E 00 F7`). Full button map + LED facts in
   selected instrument is what the step grid edits. With **Preview** on, tapping auditions
   the instrument (routed via the armed track, Launchpad95-style — see below).
 - **Pattern select (bottom-right 4×4):** 16 clip slots on the track = 16 patterns.
-- **Hold-to-edit a step (the signature gesture):** while a step pad is held, the bottom-left
-  4×4 becomes a **tuning picker** (4 options) and the **right column becomes a velocity
-  selector** (8 levels, quiet→loud bottom→top); tapping sets that step's tuning / velocity.
-  Step colour = tuning (brightness can show velocity). Release returns to normal. This is
-  one of three "hold a button → pick on a contextual surface" gestures (see Buttons).
+- **Hold-to-edit a step (the signature gesture):** while a step pad is held, the **4 leftmost
+  pads of the bottom row** (notes 11–14) **light up as a tuning picker** (the 4 tunings,
+  current one highlighted) — the colour change is deliberate feedback that tuning mode is
+  active — and the **right column becomes a velocity selector** (8 levels, quiet→loud
+  bottom→top). Tapping sets that step's tuning / velocity. Step colour = tuning (brightness
+  can show velocity). Release returns the pads to normal. One of three "hold → pick on a
+  contextual surface" gestures (see Buttons).
 
 ## LED feedback
 
@@ -149,7 +151,7 @@ All round buttons serve programming (transport is on another controller).
 | 1 | 91 | **Copy pattern** | copy the current clip |
 | 2 | 92 | **Paste pattern** | paste into the current slot |
 | 3 | 93 | **Length** | *hold + tap a step* → that step = the pattern's last step (loop length 1–32) |
-| 4 | 94 | **Resolution** | *hold* → bottom-left shows 1/8 · 1/16 · 1/32 (current lit); tap to set. Default 1/16 |
+| 4 | 94 | **Resolution** | *hold* → the 3 leftmost bottom-row pads show 1/8 · 1/16 · 1/32 (current lit); tap to set. Default 1/16 |
 | 5 | 95 | **Preview** | when on, tapping an instrument pad auditions it |
 | 6 | 96 | **Solo** | solo the selected instrument |
 | 7 | 97 | **Nudge ◀** | rotate the current lane one step left |
@@ -160,9 +162,9 @@ All round buttons serve programming (transport is on another controller).
 levels are meaningful vs. just normal/accent depends on the AlphaBase velocity-response
 check (see Open decisions).
 
-The three "hold → pick on a contextual surface" gestures: **Length** (tap a step = the
-value), **Resolution** (pick on bottom-left), **a held step** (tuning on bottom-left,
-velocity on right column).
+The three "hold → pick" gestures, unified on the **leftmost bottom-row pads** (which light
+up to signal the active mode): **Length** (tap a step = the value), **Resolution** (3 pads =
+1/8·1/16·1/32), **a held step** (4 pads = tuning, + velocity on the right column).
 
 Not on the surface (use the computer if needed): undo/redo, clear, mute.
 
@@ -172,8 +174,8 @@ Not on the surface (use the computer if needed): undo/redo, clear, mute.
   mode? (Its internal sequencer uses 63/127 — manual §10.3.1.) Decides whether the side-row
   velocity selector uses 8 levels or just normal/accent.
 - Confirm the 4 tuning deltas (0/6/12/18 semitones) feel musically useful per instrument.
-- "How do we *see* resolution" — resolved by the hold-Resolution → bottom-left picker
-  (current option lit); confirm it reads clearly in practice.
+- "How do we *see* resolution" — resolved: hold Resolution → the 3 leftmost bottom-row pads
+  light as 1/8·1/16·1/32 (current brightest); confirm it reads clearly in practice.
 - Whether to keep a Drum Rack on the track purely for naming/visual feedback in Live.
 
 ### Resolved
