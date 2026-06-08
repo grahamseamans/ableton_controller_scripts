@@ -1,0 +1,1 @@
+if you need to know how a tool or synth or somthing works to integrate it, and dont have a reference for it in reference, add it to reference

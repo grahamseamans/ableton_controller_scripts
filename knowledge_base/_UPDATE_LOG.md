@@ -16,3 +16,7 @@
 - **ok** `jomox_alphabase_manual` — +0 ~0 -0 files
 - **ok** `jomox_alphabase_mk2_manual` — +0 ~0 -0 files
 - **static** `faderfox_assets` — vendored — not fetched
+
+## Update 2026-06-03 14:18:40
+
+- **ok** `structure_void_docs` — +1836 ~0 -0 files
