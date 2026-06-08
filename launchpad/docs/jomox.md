@@ -1,18 +1,6 @@
 so what do we want with this:
 
-a lauchpad that controls the drums on a track
-
-the point of this is drum programming very specifically.
-we want to:
-program the jomox in the mode where each instrument gets a midi channel
-use standard midi clips in ableton
-program it on the launchpad
-have all of it stick around after saving.
-ideally it's just a controller script or a max for live device
-
 default to 16th of resolution for ease of use
-
-this does *not* control the live set itself. it just exists to edit drum patterns
 
 we want to be able to 
 
