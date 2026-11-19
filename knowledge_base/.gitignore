@@ -22,3 +22,5 @@ _mirror_logs/
 # templates are vendored (no upstream source URL) and must be committed.
 # ableton/scripting/extensions_sdk/ is NOT ignored — its docs are gated and must be
 # committed by hand once downloaded (not reproducible by update.py).
+plugins/*/*.pdf
+plugins/*/*.txt

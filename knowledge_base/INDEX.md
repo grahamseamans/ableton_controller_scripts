@@ -24,6 +24,8 @@ uv run --with pyyaml python update.py
 | Launchpad X | PDF | `hardware/novation_launchpad_x/` | prog ref + user guide | Focusrite/Novation — see [notes](hardware/novation_launchpad_x/notes.md) |
 | Jomox AlphaBase | PDF | `hardware/jomox_alphabase/` | manual + Mk2 | jomox.de — see [notes](hardware/jomox_alphabase/notes.md) (MIDI decoded) |
 | Faderfox MX12/PC12 | static | `hardware/faderfox/` | manuals, firmware, templates | vendored (V04, committed) |
+| D16 Drumazon / Drumazon 2 | PDF | `plugins/d16_drumazon/` | v1 + v2 manuals | d16.pl — see [notes](plugins/d16_drumazon/notes.md) (MIDI drum map) |
+| Sonic Charge Microtonic | PDF | `plugins/sonic_charge_microtonic/` | user guide v3.3.4 | soniccharge.com — see [notes](plugins/sonic_charge_microtonic/notes.md) (MIDI key map) |
 
 ## Our synthesis notes (committed, the high-value distillations)
 
@@ -33,6 +35,10 @@ uv run --with pyyaml python update.py
 - [`hardware/novation_launchpad_x/notes.md`](hardware/novation_launchpad_x/notes.md) —
   verified programmer-mode contract (grid `11–88`, top CC `91–98`, right CC `19–89`,
   batch-RGB SysEx feedback).
+- [`plugins/d16_drumazon/notes.md`](plugins/d16_drumazon/notes.md) — Drumazon GM drum map
+  (35–51 → BD…RD), remappable; MIDI channel undocumented.
+- [`plugins/sonic_charge_microtonic/notes.md`](plugins/sonic_charge_microtonic/notes.md) —
+  36–43 trigger ch 1–8; remappable keys; receive channel/any, pitched mode = ch 1–8 + 10.
 - [`ableton/max_for_live/notes.md`](ableton/max_for_live/notes.md) — what M4L is good for
   vs remote scripts vs Extensions.
 - Scripting generations overview lives in [`README.md`](README.md).

@@ -42,6 +42,9 @@ hardware/
   novation_launchpad_x/   programmer reference + user guide PDFs + notes.md
   jomox_alphabase/        manual PDFs + notes.md (MIDI implementation decoded)
   faderfox/               MX12/PC12 manuals, firmware, templates (vendored static)
+plugins/
+  d16_drumazon/            Drumazon v1 + 2 manual PDFs + notes.md (drum MIDI map)
+  sonic_charge_microtonic/ Microtonic user guide PDF + notes.md (MIDI key map)
 ```
 
 ## The Ableton scripting generations (so we don't conflate them)

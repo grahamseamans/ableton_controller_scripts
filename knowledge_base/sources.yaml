@@ -97,3 +97,18 @@ sources:
     type: static
     dest: hardware/faderfox
     note: MX12/PC12 manuals, firmware .syx, quick-start PDFs, Universal templates.
+
+  # ---------------- Plugins (drum-voice MIDI maps) ----------------
+  - name: d16_drumazon2_manual
+    type: pdf
+    dest: plugins/d16_drumazon/Drumazon2-manual-gb.pdf
+    url: https://d16.pl/pub/manuals/Drumazon%202-manual-gb.pdf
+  # v1 manual: no longer linked from d16.pl/manuals, still served at this path.
+  - name: d16_drumazon_manual
+    type: pdf
+    dest: plugins/d16_drumazon/Drumazon-manual-gb.pdf
+    url: https://d16.pl/pub/manuals/Drumazon-manual-gb.pdf
+  - name: sonic_charge_microtonic_guide
+    type: pdf
+    dest: plugins/sonic_charge_microtonic/Microtonic_User_Guide.pdf
+    url: https://soniccharge.com/public/Microtonic%20User%20Guide.pdf

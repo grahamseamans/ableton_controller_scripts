@@ -25,7 +25,7 @@ inherently needs 11 separate note streams = **11 tracks**. That conflicts with t
 **Status:** abandoned in favour of Pattern 3. Revisit only if 4 tunings prove too limiting
 (would require the 11-track template).
 
-## Pattern 3 — AlphaBase channel-16 keymap, single track (current)
+## Pattern 3 — AlphaBase channel-16 keymap, single track
 **Chosen:** run the AlphaBase in **channel-16 keymap mode** — one channel, note selects
 instrument, 4 tunings per instrument (deltas 0/6/12/18 semitones; manual §13.1.1). One MIDI
 track → channel 16 carries the whole kit.
@@ -40,7 +40,17 @@ track → channel 16 carries the whole kit.
 
 **Trade-off accepted:** 4 tunings per instrument instead of full chromatic.
 
-**Status:** active. See `architecture.md` and `midi_mappings.md`. No code yet.
+**Status:** built as `Jomox_Pattern_Programmer`, retired by Pattern 4. Code and docs archived in `launchpad/archive/jomox_pattern_programmer/`.
+
+## Pattern 4 — three-page controller (current)
+**Chosen:** the Launchpad becomes one composition controller with Session, Drums and
+Snapshots pages (Session / Note / Custom buttons, Capture MIDI = super). AlphaBase retired;
+the drum page drives Drumazon 2 and Microtonic through per-plugin drum maps; the tuning
+picker (pitch per held step) is dropped. Session page uses only `SessionRingComponent`
+from the framework, because `SessionComponent` / `SessionNavigationComponent` light LEDs
+through the Skin and the script has one LED system (batch RGB).
+
+**Status:** active. See `architecture.md` and `midi_mappings.md`.
 
 ## Decision provenance
 

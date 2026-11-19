@@ -1,104 +1,76 @@
 # MIDI Mappings — Source of Truth
 
-The contract between the Launchpad X, the script, and the Jomox AlphaBase. If the script
-does something this file doesn't document, the script is wrong. All facts trace to the
-knowledge base:
-- Launchpad: `knowledge_base/hardware/novation_launchpad_x/` (Programmer's Reference, p.10–15)
-- AlphaBase: `knowledge_base/hardware/jomox_alphabase/` (manual §13.1.1)
+This file is the contract between the Launchpad X, the script and the drum plugins. Sources:
+- LPX Programmer's Reference (`/workspace/controller-system/reference/novation-launchpad-x-programmers-reference.pdf`)
+- `knowledge_base/hardware/novation_launchpad_x/notes.md`
 
----
+## Launchpad X, Programmer mode, channel 1
 
-## A. Launchpad X — what the device sends/receives (Programmer mode)
-
-Enter on connect: `F0 00 20 29 02 0C 0E 01 F7` · revert on disconnect: `F0 00 20 29 02 0C 0E 00 F7`.
-
-| Control | Sends | Numbers |
+| Control | Message | Numbers |
 |---|---|---|
-| 8×8 grid pad | Note On, ch 1 (Note Off = vel 0) | `note = row*10 + col`, bottom-left `11` … top-right `88` |
-| Top round row (×8) | CC, ch 1 | `91`–`98` (left→right) |
-| Right round column (×8) | CC, ch 1 | `19,29,39,49,59,69,79,89` (bottom→top) |
-| Logo | CC, ch 1 | `99` |
+| 8×8 grid | Note | `row*10+col`, bottom-left `11`, top-right `88` |
+| ▲ ▼ ◀ ▶ | CC | `91 92 93 94` |
+| Session / Note / Custom / Capture MIDI | CC | `95 96 97 98` |
+| Right column | CC | `19 29 … 89` (bottom→top) |
+| Logo (LED only) | CC | `99` |
 
-**LEDs:** echo the pad's note/CC. Channel = animation: ch1 static, ch2 flashing, ch3
-pulsing; velocity/value = palette colour. **Batch RGB:** SysEx cmd `03`, up to 81 entries
-`<type> <index> <r> <g> <b>` (type 3 = RGB, 0–127 each). Used for full-surface repaint.
+- Enter Programmer mode: `F0 00 20 29 02 0C 0E 01 F7`. Back to Live mode: `…0E 00 F7`.
+- LEDs: batch RGB `F0 00 20 29 02 0C 03 (03 idx r g b)… F7`, at most 81 per message.
 
----
+## Buttons
 
-## B. Launchpad grid → function regions
+| Button | Session page | Drum page | Snapshot page |
+|---|---|---|---|
+| Session CC95 | → session | → session | → session |
+| Note CC96 | → drums | → drums | → drums |
+| Custom CC97 | → snapshots | → snapshots | → snapshots |
+| Capture MIDI CC98 | super (hold) | super (hold) | super (hold) |
+| ▲ CC91 | ring up | Length (hold) | dark |
+| ▼ CC92 | ring down | Resolution (hold) | dark |
+| ◀ ▶ CC93/94 | ring left/right | nudge lane | dark |
+| Right column | scene launch, top = scene 1 | velocity, 8 levels, bottom = quiet | dark |
+| Logo | page signature colour | ← | ← |
 
-Grid coordinates `row*10+col`, row 8 = top, row 1 = bottom.
+## Grid regions
 
-| Region | Grid pads (notes) | Function |
+**Session page:** all 64 pads = clip slots of the ring (column = track, row = scene).
+- super + pad stops that track.
+- super + scene button stops all clips.
+
+**Drum page** (`row 8` = top):
+
+| Region | Pads | Function |
 |---|---|---|
-| Step sequencer (rows 8→5) | 81–88, 71–78, 61–68, 51–58 | 32 steps; step 1 = `81` (top-left), order left→right then top→down |
-| Instrument select (rows 4→1, cols 1–4) | 41–44, 31–34, 21–24, 11–14 | instrument idx 0–15 (0–10 used) |
-| Pattern select (rows 4→1, cols 5–8) | 45–48, 35–38, 25–28, 15–18 | clip slot 0–15 |
+| Steps (rows 8→5) | 81–88, 71–78, 61–68, 51–58 | 32 steps, step 1 = `81`, left→right then down. time = step × resolution |
+| Voices (rows 4→1, cols 1–4) | 41–44, 31–34, 21–24, 11–14 | DrumMap voices in pad order. super + pad clears that lane |
+| Patterns (rows 4→1, cols 5–8) | 45–48, 35–38, 25–28, 15–18 | clip slots 0–15. super + pad duplicates the current pattern there |
 
-Step→clip-time: `time = step_index * step_resolution` (default 1/16). step_index 0..31.
-Instrument pad→idx (row-major, **left→right within a row, then downward** row 4→row 1):
-`41`=0,`42`=1,`43`=2,`44`=3, `31`=4…`34`=7, `21`=8…`24`=11, `11`=12,`12`=13,`13`=14,`14`=15.
-Pattern pad→slot uses the same scheme on cols 5–8 (`45`=0 … `18`=15).
+- Hold ▲ and tap a step: sets the bound clip's loop to end after that step
+  (`loop_end = loop_start + steps × resolution`, and `end_marker` is pushed out if needed).
+  The loop shown on the steps always comes from the clip's own `loop_start`/`loop_end`, so
+  every pattern keeps its own length, and a loop edited in Live shows up on the pads.
+  With no clip in the slot, ▲ + step first creates the clip.
+- Hold ▼ and tap one of the first 6 steps: 1/4 · 1/8 · 1/16 · 1/32 · 1/8T · 1/16T (default 1/16).
+- Hold a step and press the right column: sets that step's velocity. With no step held, it
+  sets the velocity for new steps.
 
-**Round buttons (CC):**
-- Top row `91`–`98` (left→right): Copy, Paste, **Length** (hold+tap step), **Resolution**
-  (hold→tap one of the resolution-option pads in the step area), Preview, Solo, Nudge◀, Nudge▶.
-- Right column `19`–`89` (bottom→top): **velocity** selector for the held/selected step
-  (8 levels; level count vs normal/accent gated on the AlphaBase velocity-response check).
+**Snapshot page:** 64 pads = 64 slots, keyed by grid note.
+- pad = recall;
+- super + pad = save.
 
-**Hold-to-modify gestures, by surface** (all affected pads recolour while held):
-- Hold **Length** → tap a step in the top half = loop end (step position = length).
-- Hold **Resolution** → the top half shows the resolution options, one pad each (current lit);
-  tap to set. Set: 1/4·1/8·1/16·1/32·1/8T·1/16T (default 1/16).
-- Hold a **step** → the 4 leftmost bottom-row pads (`11`–`14`, normally spare instrument pads)
-  show the 4 tunings (tap = set the held step's pitch); the right column shows velocity.
+## Drum notes
 
----
+`scripts/LPX_Script/drum_maps/*.py` is the **only** place note numbers live:
+- `drumazon2.py`: GM-style, BD 36 … RD 51. UNVERIFIED (read from a screenshot).
+- `microtonic.py`: Ch1…Ch8 = 36…43.
 
-## C. AlphaBase — channel-16 keymap (manual §13.1.1)
+Plugin channel notes:
+- **Microtonic**: set Receive Channel to "any" or 1, and don't use pitched MIDI mode.
+- **Drumazon 2**: channel behaviour is not documented; verify in Live.
 
-**All notes on MIDI channel 16.** Note selects instrument; each instrument has 4 notes =
-4 tunings (pitch deltas 0 / 6 / 12 / 18 semitones).
+Both assume the plugin's factory map.
 
-| idx | Instrument | Notes (tuning 0,1,2,3) |
-|---|---|---|
-| 0 | Kick | 36, 37, 38, 39 |
-| 1 | Snare | 40, 41, 42, 43 |
-| 2 | Closed HH | 44, 45, 46, 47 |
-| 3 | Open HH | 48, 49, 50, 51 |
-| 4 | Clap | 52, 53, 54, 55 |
-| 5 | Rim | 56, 57, 58, 59 |
-| 6 | Crash | 60, 61, 62, 63 |
-| 7 | Ride | 64, 65, 66, 67 |
-| 8 | X1 sample | 68, 69, 70, 71 |
-| 9 | X2 sample | 72, 73, 74, 75 |
-| 10 | FM synth | 76, 77, 78, 79 |
+## Channels
 
-**Canonical formula:** `note = 36 + instrument_idx*4 + tuning`, `tuning ∈ {0,1,2,3}`.
-This lives in code in `alphabase_map.py` as the single source; nothing else hard-codes notes.
-
-Requires AlphaBase **RxTrig = on** (manual §10.3.3). Ch16 keymap reception is **confirmed
-on hardware** (the §10.3.3 text only names ch 1–11, but ch16 works). Velocity→dynamics/
-accent: **to verify**.
-
----
-
-## D. The full edit path (one step)
-
-1. User selects instrument `i` (bottom-left) and pattern slot `p` (bottom-right).
-2. Script binds to `track.clip_slots[p].clip` (creates an empty clip if needed).
-3. User taps step `s` (rows 5–8). Script computes `note = 36 + i*4 + tuning(s)` and
-   `time = s * step_resolution`, then toggles that note in the clip
-   (`add_new_notes` / `remove_notes_extended`).
-4. Holding step `s`: the 4 leftmost bottom-row pads (`11`–`14`) set `tuning(s)` (rewrites the
-   note's pitch); the right column sets `velocity(s)`. Step colour = tuning.
-5. Live plays the clip out the track → channel 16 → AlphaBase. The script repaints LEDs
-   (step colour = tuning; playhead = `clip.playing_position` mapped to a step cell).
-
----
-
-## Channel summary
-
-- Launchpad X ↔ script: ch 1 (its own MIDI port; LEDs + button input).
-- Track → AlphaBase: **ch 16 only** (single track). No other channels used — this is the
-  whole point of choosing keymap mode over native 11-channel mode.
+- Launchpad ↔ script: channel 1, on the LPX MIDI port.
+- Track → plugin: whatever the track sends. The clips carry only the notes above.

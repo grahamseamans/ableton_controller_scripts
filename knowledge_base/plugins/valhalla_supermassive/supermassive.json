@@ -1,0 +1,4822 @@
+{
+  "plugin": {
+    "name": "ValhallaSupermassive",
+    "descriptive_name": "ValhallaSupermassive",
+    "manufacturer": "Valhalla DSP, LLC",
+    "version": "5.0.0",
+    "format": "VST3",
+    "category": "Fx",
+    "unique_id": 2123359701,
+    "path": "/Library/Audio/Plug-Ins/VST3/ValhallaSupermassive.vst3",
+    "types_found_in_bundle": 1,
+    "host": {
+      "tool": "dump_vst3_parameters",
+      "tool_version": "1",
+      "framework": "JUCE JUCE v8.0.6 AudioPluginFormatManager / VST3PluginFormat, VST3 SDK bundled with JUCE",
+      "note": "standalone console app, not a DAW; plugin instantiated headlessly",
+      "display_string_source": "AudioProcessorParameter::getText(normalised, 256) -> IEditController::getParamStringByValue. Strings are byte-for-byte as returned. getText with maximumLength 0 returns \"\" in JUCE 8, so 256 is used.",
+      "os": "Mac OSX 26.5.1",
+      "os_description": "Mac14,15",
+      "cpu": "Apple M2",
+      "dumped_at": "2026-08-02T09:37:51.930-07:00"
+    },
+    "parameter_count": 19,
+    "capture": {
+      "defaults_state": "snapshotted from the instance as created by createPluginInstance(44100, 512), before prepareToPlay and before any sweep",
+      "prepare_probe_note": "the read-only taper was taken twice, once as created and once after prepareToPlay(44100, 512), to catch plugins that only format once prepared",
+      "continuous_params": 18,
+      "identity_number_params_unprepared": 0,
+      "identity_number_params_prepared": 0,
+      "unprepared_degenerate": false,
+      "prepared_degenerate": false,
+      "prepare_changed_any_string": false,
+      "read_only_taper_taken_from": "as created, before prepareToPlay",
+      "write_sweeps_performed": 18,
+      "write_sweep_note": "a write sweep is used only for parameters whose read-only sweep returned the same string at every t, which means the plugin ignores getParamStringByValue's value argument. Each write sweep restores the parameter's original value.",
+      "all_values_restored_after_sweeps": true,
+      "cross_parameter_state_note": "parameters are not independent (on Supermassive, DelayNote's display depends on DelaySync). Every write sweep is preceded by restoring ALL parameters to their snapshot values, so one parameter's sweep cannot leak into the next one's strings. Per parameter, restored_cleanly records whether the display came back.",
+      "params_not_restored_cleanly": 0,
+      "plateaus_measured_after_prepare": true
+    }
+  },
+  "parameters": [
+    {
+      "index": 0,
+      "vst3_param_id": "48",
+      "vst3_param_id_numeric": 48,
+      "name": "Mix",
+      "label": null,
+      "label_note": "AudioProcessorParameter::getLabel() -> VST3 ParameterInfo::units. null means the plugin left that field empty; the unit is then only visible inside the display strings.",
+      "value_domain": "JUCE normalises every VST3 parameter to 0..1; min and max below are that normalised domain, not the plugin's real-world range. The real-world range is only observable through the display strings.",
+      "min": 0,
+      "max": 1,
+      "default": 0.5,
+      "default_is_normalised": true,
+      "default_string": "50.0 %",
+      "current_value_untouched": 0.5,
+      "current_value_string_untouched": "50.0 %",
+      "num_steps": 2147483647,
+      "num_steps_is_juce_default_for_continuous": true,
+      "num_steps_note": "JUCE derives this from VST3 ParameterInfo::stepCount: stepCount 0 means 'continuous' and JUCE substitutes its default step count. A parameter that displays as an enum but reports the default step count is one the plugin declared continuous.",
+      "is_discrete": false,
+      "is_boolean": false,
+      "is_quantized_declared": false,
+      "is_bypass_parameter": false,
+      "is_automatable": true,
+      "is_meta_parameter": false,
+      "is_orientation_inverted": false,
+      "value_items_from_getAllValueStrings": null,
+      "value_items_from_getAllValueStrings_note": "JUCE 8's VST3Parameter::getAllValueStrings() returns {} unconditionally. A null here is a JUCE limitation, not a statement about the plugin. The measured string_plateaus below are the real item source.",
+      "value_items": null,
+      "value_items_source": null,
+      "taper_method": "write sweep: setParamNormalized(id, t) then getParamStringByValue, original value restored",
+      "read_only_sweep_was_constant": true,
+      "read_only_sweep_constant_note": "getParamStringByValue returned the same string for every t, i.e. the plugin ignores the value argument and formats its current value. See taper_read_only for the evidence.",
+      "write_sweep_also_constant": false,
+      "string_after_restore": "50.0 %",
+      "restored_cleanly": true,
+      "restored_cleanly_note": "true means that after the sweep, with every parameter set back to its snapshot value, this parameter formatted exactly as it did on the untouched instance. False means the plugin latched state the sweep could not undo, and this parameter's taper may be contaminated.",
+      "taper_read_only": [
+        {
+          "t": 0,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.05,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.1,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.15,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.2,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.25,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.3,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.35,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.4,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.45,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.5,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.55,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.6,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.65,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.7,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.75,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.8,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.85,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.9,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.95,
+          "string": "50.0 %"
+        },
+        {
+          "t": 1,
+          "string": "50.0 %"
+        }
+      ],
+      "taper": [
+        {
+          "t": 0,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.05,
+          "string": "5.0 %"
+        },
+        {
+          "t": 0.1,
+          "string": "10.0 %"
+        },
+        {
+          "t": 0.15,
+          "string": "15.0 %"
+        },
+        {
+          "t": 0.2,
+          "string": "20.0 %"
+        },
+        {
+          "t": 0.25,
+          "string": "25.0 %"
+        },
+        {
+          "t": 0.3,
+          "string": "30.0 %"
+        },
+        {
+          "t": 0.35,
+          "string": "35.0 %"
+        },
+        {
+          "t": 0.4,
+          "string": "40.0 %"
+        },
+        {
+          "t": 0.45,
+          "string": "45.0 %"
+        },
+        {
+          "t": 0.5,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.55,
+          "string": "55.0 %"
+        },
+        {
+          "t": 0.6,
+          "string": "60.0 %"
+        },
+        {
+          "t": 0.65,
+          "string": "65.0 %"
+        },
+        {
+          "t": 0.7,
+          "string": "70.0 %"
+        },
+        {
+          "t": 0.75,
+          "string": "75.0 %"
+        },
+        {
+          "t": 0.8,
+          "string": "80.0 %"
+        },
+        {
+          "t": 0.85,
+          "string": "85.0 %"
+        },
+        {
+          "t": 0.9,
+          "string": "90.0 %"
+        },
+        {
+          "t": 0.95,
+          "string": "95.0 %"
+        },
+        {
+          "t": 1,
+          "string": "100.0 %"
+        }
+      ],
+      "string_plateaus": {
+        "sweep_points": 1001,
+        "method": "t = k/1000 for k in 0..1000, write sweep, consecutive equal strings collapsed",
+        "distinct_run_count": 1001,
+        "runs": null,
+        "runs_omitted_reason": "more than 64 distinct runs, i.e. continuous rather than stepped; the 21-point taper is the sample"
+      }
+    },
+    {
+      "index": 1,
+      "vst3_param_id": "49",
+      "vst3_param_id_numeric": 49,
+      "name": "DelaySync",
+      "label": null,
+      "label_note": "AudioProcessorParameter::getLabel() -> VST3 ParameterInfo::units. null means the plugin left that field empty; the unit is then only visible inside the display strings.",
+      "value_domain": "JUCE normalises every VST3 parameter to 0..1; min and max below are that normalised domain, not the plugin's real-world range. The real-world range is only observable through the display strings.",
+      "min": 0,
+      "max": 1,
+      "default": 0.25,
+      "default_is_normalised": true,
+      "default_string": "Msec",
+      "current_value_untouched": 0.25,
+      "current_value_string_untouched": "Msec",
+      "num_steps": 2147483647,
+      "num_steps_is_juce_default_for_continuous": true,
+      "num_steps_note": "JUCE derives this from VST3 ParameterInfo::stepCount: stepCount 0 means 'continuous' and JUCE substitutes its default step count. A parameter that displays as an enum but reports the default step count is one the plugin declared continuous.",
+      "is_discrete": false,
+      "is_boolean": false,
+      "is_quantized_declared": false,
+      "is_bypass_parameter": false,
+      "is_automatable": true,
+      "is_meta_parameter": false,
+      "is_orientation_inverted": false,
+      "value_items_from_getAllValueStrings": null,
+      "value_items_from_getAllValueStrings_note": "JUCE 8's VST3Parameter::getAllValueStrings() returns {} unconditionally. A null here is a JUCE limitation, not a statement about the plugin. The measured string_plateaus below are the real item source.",
+      "value_items": [
+        "Msec",
+        "Note",
+        "Dotted",
+        "Triplet"
+      ],
+      "value_items_source": "measured: distinct runs of the 1001-point display-string sweep, in order",
+      "taper_method": "write sweep: setParamNormalized(id, t) then getParamStringByValue, original value restored",
+      "read_only_sweep_was_constant": true,
+      "read_only_sweep_constant_note": "getParamStringByValue returned the same string for every t, i.e. the plugin ignores the value argument and formats its current value. See taper_read_only for the evidence.",
+      "write_sweep_also_constant": false,
+      "string_after_restore": "Msec",
+      "restored_cleanly": true,
+      "restored_cleanly_note": "true means that after the sweep, with every parameter set back to its snapshot value, this parameter formatted exactly as it did on the untouched instance. False means the plugin latched state the sweep could not undo, and this parameter's taper may be contaminated.",
+      "taper_read_only": [
+        {
+          "t": 0,
+          "string": "Msec"
+        },
+        {
+          "t": 0.05,
+          "string": "Msec"
+        },
+        {
+          "t": 0.1,
+          "string": "Msec"
+        },
+        {
+          "t": 0.15,
+          "string": "Msec"
+        },
+        {
+          "t": 0.2,
+          "string": "Msec"
+        },
+        {
+          "t": 0.25,
+          "string": "Msec"
+        },
+        {
+          "t": 0.3,
+          "string": "Msec"
+        },
+        {
+          "t": 0.35,
+          "string": "Msec"
+        },
+        {
+          "t": 0.4,
+          "string": "Msec"
+        },
+        {
+          "t": 0.45,
+          "string": "Msec"
+        },
+        {
+          "t": 0.5,
+          "string": "Msec"
+        },
+        {
+          "t": 0.55,
+          "string": "Msec"
+        },
+        {
+          "t": 0.6,
+          "string": "Msec"
+        },
+        {
+          "t": 0.65,
+          "string": "Msec"
+        },
+        {
+          "t": 0.7,
+          "string": "Msec"
+        },
+        {
+          "t": 0.75,
+          "string": "Msec"
+        },
+        {
+          "t": 0.8,
+          "string": "Msec"
+        },
+        {
+          "t": 0.85,
+          "string": "Msec"
+        },
+        {
+          "t": 0.9,
+          "string": "Msec"
+        },
+        {
+          "t": 0.95,
+          "string": "Msec"
+        },
+        {
+          "t": 1,
+          "string": "Msec"
+        }
+      ],
+      "taper": [
+        {
+          "t": 0,
+          "string": "Msec"
+        },
+        {
+          "t": 0.05,
+          "string": "Msec"
+        },
+        {
+          "t": 0.1,
+          "string": "Msec"
+        },
+        {
+          "t": 0.15,
+          "string": "Msec"
+        },
+        {
+          "t": 0.2,
+          "string": "Msec"
+        },
+        {
+          "t": 0.25,
+          "string": "Msec"
+        },
+        {
+          "t": 0.3,
+          "string": "Msec"
+        },
+        {
+          "t": 0.35,
+          "string": "Msec"
+        },
+        {
+          "t": 0.4,
+          "string": "Msec"
+        },
+        {
+          "t": 0.45,
+          "string": "Msec"
+        },
+        {
+          "t": 0.5,
+          "string": "Note"
+        },
+        {
+          "t": 0.55,
+          "string": "Note"
+        },
+        {
+          "t": 0.6,
+          "string": "Note"
+        },
+        {
+          "t": 0.65,
+          "string": "Note"
+        },
+        {
+          "t": 0.7,
+          "string": "Note"
+        },
+        {
+          "t": 0.75,
+          "string": "Dotted"
+        },
+        {
+          "t": 0.8,
+          "string": "Dotted"
+        },
+        {
+          "t": 0.85,
+          "string": "Dotted"
+        },
+        {
+          "t": 0.9,
+          "string": "Dotted"
+        },
+        {
+          "t": 0.95,
+          "string": "Dotted"
+        },
+        {
+          "t": 1,
+          "string": "Triplet"
+        }
+      ],
+      "string_plateaus": {
+        "sweep_points": 1001,
+        "method": "t = k/1000 for k in 0..1000, write sweep, consecutive equal strings collapsed",
+        "distinct_run_count": 4,
+        "runs": [
+          {
+            "run_index": 0,
+            "string": "Msec",
+            "t_first": 0,
+            "t_last": 0.499,
+            "sample_count": 500
+          },
+          {
+            "run_index": 1,
+            "string": "Note",
+            "t_first": 0.5,
+            "t_last": 0.749,
+            "sample_count": 250
+          },
+          {
+            "run_index": 2,
+            "string": "Dotted",
+            "t_first": 0.75,
+            "t_last": 0.999,
+            "sample_count": 250
+          },
+          {
+            "run_index": 3,
+            "string": "Triplet",
+            "t_first": 1,
+            "t_last": 1,
+            "sample_count": 1
+          }
+        ],
+        "runs_omitted_reason": null
+      }
+    },
+    {
+      "index": 2,
+      "vst3_param_id": "50",
+      "vst3_param_id_numeric": 50,
+      "name": "DelayNote",
+      "label": null,
+      "label_note": "AudioProcessorParameter::getLabel() -> VST3 ParameterInfo::units. null means the plugin left that field empty; the unit is then only visible inside the display strings.",
+      "value_domain": "JUCE normalises every VST3 parameter to 0..1; min and max below are that normalised domain, not the plugin's real-world range. The real-world range is only observable through the display strings.",
+      "min": 0,
+      "max": 1,
+      "default": 0.2857143,
+      "default_is_normalised": true,
+      "default_string": "1/16",
+      "current_value_untouched": 0.2857143,
+      "current_value_string_untouched": "1/16",
+      "num_steps": 2147483647,
+      "num_steps_is_juce_default_for_continuous": true,
+      "num_steps_note": "JUCE derives this from VST3 ParameterInfo::stepCount: stepCount 0 means 'continuous' and JUCE substitutes its default step count. A parameter that displays as an enum but reports the default step count is one the plugin declared continuous.",
+      "is_discrete": false,
+      "is_boolean": false,
+      "is_quantized_declared": false,
+      "is_bypass_parameter": false,
+      "is_automatable": true,
+      "is_meta_parameter": false,
+      "is_orientation_inverted": false,
+      "value_items_from_getAllValueStrings": null,
+      "value_items_from_getAllValueStrings_note": "JUCE 8's VST3Parameter::getAllValueStrings() returns {} unconditionally. A null here is a JUCE limitation, not a statement about the plugin. The measured string_plateaus below are the real item source.",
+      "value_items": [
+        "1/64",
+        "1/32",
+        "1/16",
+        "1/8",
+        "1/4",
+        "2/4",
+        "4/4"
+      ],
+      "value_items_source": "measured: distinct runs of the 1001-point display-string sweep, in order",
+      "taper_method": "write sweep: setParamNormalized(id, t) then getParamStringByValue, original value restored",
+      "read_only_sweep_was_constant": true,
+      "read_only_sweep_constant_note": "getParamStringByValue returned the same string for every t, i.e. the plugin ignores the value argument and formats its current value. See taper_read_only for the evidence.",
+      "write_sweep_also_constant": false,
+      "string_after_restore": "1/16",
+      "restored_cleanly": true,
+      "restored_cleanly_note": "true means that after the sweep, with every parameter set back to its snapshot value, this parameter formatted exactly as it did on the untouched instance. False means the plugin latched state the sweep could not undo, and this parameter's taper may be contaminated.",
+      "taper_read_only": [
+        {
+          "t": 0,
+          "string": "1/16"
+        },
+        {
+          "t": 0.05,
+          "string": "1/16"
+        },
+        {
+          "t": 0.1,
+          "string": "1/16"
+        },
+        {
+          "t": 0.15,
+          "string": "1/16"
+        },
+        {
+          "t": 0.2,
+          "string": "1/16"
+        },
+        {
+          "t": 0.25,
+          "string": "1/16"
+        },
+        {
+          "t": 0.3,
+          "string": "1/16"
+        },
+        {
+          "t": 0.35,
+          "string": "1/16"
+        },
+        {
+          "t": 0.4,
+          "string": "1/16"
+        },
+        {
+          "t": 0.45,
+          "string": "1/16"
+        },
+        {
+          "t": 0.5,
+          "string": "1/16"
+        },
+        {
+          "t": 0.55,
+          "string": "1/16"
+        },
+        {
+          "t": 0.6,
+          "string": "1/16"
+        },
+        {
+          "t": 0.65,
+          "string": "1/16"
+        },
+        {
+          "t": 0.7,
+          "string": "1/16"
+        },
+        {
+          "t": 0.75,
+          "string": "1/16"
+        },
+        {
+          "t": 0.8,
+          "string": "1/16"
+        },
+        {
+          "t": 0.85,
+          "string": "1/16"
+        },
+        {
+          "t": 0.9,
+          "string": "1/16"
+        },
+        {
+          "t": 0.95,
+          "string": "1/16"
+        },
+        {
+          "t": 1,
+          "string": "1/16"
+        }
+      ],
+      "taper": [
+        {
+          "t": 0,
+          "string": "1/64"
+        },
+        {
+          "t": 0.05,
+          "string": "1/64"
+        },
+        {
+          "t": 0.1,
+          "string": "1/64"
+        },
+        {
+          "t": 0.15,
+          "string": "1/32"
+        },
+        {
+          "t": 0.2,
+          "string": "1/32"
+        },
+        {
+          "t": 0.25,
+          "string": "1/32"
+        },
+        {
+          "t": 0.3,
+          "string": "1/16"
+        },
+        {
+          "t": 0.35,
+          "string": "1/16"
+        },
+        {
+          "t": 0.4,
+          "string": "1/16"
+        },
+        {
+          "t": 0.45,
+          "string": "1/8"
+        },
+        {
+          "t": 0.5,
+          "string": "1/8"
+        },
+        {
+          "t": 0.55,
+          "string": "1/8"
+        },
+        {
+          "t": 0.6,
+          "string": "1/4"
+        },
+        {
+          "t": 0.65,
+          "string": "1/4"
+        },
+        {
+          "t": 0.7,
+          "string": "1/4"
+        },
+        {
+          "t": 0.75,
+          "string": "2/4"
+        },
+        {
+          "t": 0.8,
+          "string": "2/4"
+        },
+        {
+          "t": 0.85,
+          "string": "2/4"
+        },
+        {
+          "t": 0.9,
+          "string": "4/4"
+        },
+        {
+          "t": 0.95,
+          "string": "4/4"
+        },
+        {
+          "t": 1,
+          "string": "4/4"
+        }
+      ],
+      "string_plateaus": {
+        "sweep_points": 1001,
+        "method": "t = k/1000 for k in 0..1000, write sweep, consecutive equal strings collapsed",
+        "distinct_run_count": 7,
+        "runs": [
+          {
+            "run_index": 0,
+            "string": "1/64",
+            "t_first": 0,
+            "t_last": 0.142,
+            "sample_count": 143
+          },
+          {
+            "run_index": 1,
+            "string": "1/32",
+            "t_first": 0.143,
+            "t_last": 0.285,
+            "sample_count": 143
+          },
+          {
+            "run_index": 2,
+            "string": "1/16",
+            "t_first": 0.286,
+            "t_last": 0.428,
+            "sample_count": 143
+          },
+          {
+            "run_index": 3,
+            "string": "1/8",
+            "t_first": 0.429,
+            "t_last": 0.571,
+            "sample_count": 143
+          },
+          {
+            "run_index": 4,
+            "string": "1/4",
+            "t_first": 0.572,
+            "t_last": 0.714,
+            "sample_count": 143
+          },
+          {
+            "run_index": 5,
+            "string": "2/4",
+            "t_first": 0.715,
+            "t_last": 0.857,
+            "sample_count": 143
+          },
+          {
+            "run_index": 6,
+            "string": "4/4",
+            "t_first": 0.858,
+            "t_last": 1,
+            "sample_count": 143
+          }
+        ],
+        "runs_omitted_reason": null
+      }
+    },
+    {
+      "index": 3,
+      "vst3_param_id": "51",
+      "vst3_param_id_numeric": 51,
+      "name": "Delay_Ms",
+      "label": null,
+      "label_note": "AudioProcessorParameter::getLabel() -> VST3 ParameterInfo::units. null means the plugin left that field empty; the unit is then only visible inside the display strings.",
+      "value_domain": "JUCE normalises every VST3 parameter to 0..1; min and max below are that normalised domain, not the plugin's real-world range. The real-world range is only observable through the display strings.",
+      "min": 0,
+      "max": 1,
+      "default": 0.5,
+      "default_is_normalised": true,
+      "default_string": "300.0 ms",
+      "current_value_untouched": 0.5,
+      "current_value_string_untouched": "300.0 ms",
+      "num_steps": 2147483647,
+      "num_steps_is_juce_default_for_continuous": true,
+      "num_steps_note": "JUCE derives this from VST3 ParameterInfo::stepCount: stepCount 0 means 'continuous' and JUCE substitutes its default step count. A parameter that displays as an enum but reports the default step count is one the plugin declared continuous.",
+      "is_discrete": false,
+      "is_boolean": false,
+      "is_quantized_declared": false,
+      "is_bypass_parameter": false,
+      "is_automatable": true,
+      "is_meta_parameter": false,
+      "is_orientation_inverted": false,
+      "value_items_from_getAllValueStrings": null,
+      "value_items_from_getAllValueStrings_note": "JUCE 8's VST3Parameter::getAllValueStrings() returns {} unconditionally. A null here is a JUCE limitation, not a statement about the plugin. The measured string_plateaus below are the real item source.",
+      "value_items": null,
+      "value_items_source": null,
+      "taper_method": "write sweep: setParamNormalized(id, t) then getParamStringByValue, original value restored",
+      "read_only_sweep_was_constant": true,
+      "read_only_sweep_constant_note": "getParamStringByValue returned the same string for every t, i.e. the plugin ignores the value argument and formats its current value. See taper_read_only for the evidence.",
+      "write_sweep_also_constant": false,
+      "string_after_restore": "300.0 ms",
+      "restored_cleanly": true,
+      "restored_cleanly_note": "true means that after the sweep, with every parameter set back to its snapshot value, this parameter formatted exactly as it did on the untouched instance. False means the plugin latched state the sweep could not undo, and this parameter's taper may be contaminated.",
+      "taper_read_only": [
+        {
+          "t": 0,
+          "string": "300.0 ms"
+        },
+        {
+          "t": 0.05,
+          "string": "300.0 ms"
+        },
+        {
+          "t": 0.1,
+          "string": "300.0 ms"
+        },
+        {
+          "t": 0.15,
+          "string": "300.0 ms"
+        },
+        {
+          "t": 0.2,
+          "string": "300.0 ms"
+        },
+        {
+          "t": 0.25,
+          "string": "300.0 ms"
+        },
+        {
+          "t": 0.3,
+          "string": "300.0 ms"
+        },
+        {
+          "t": 0.35,
+          "string": "300.0 ms"
+        },
+        {
+          "t": 0.4,
+          "string": "300.0 ms"
+        },
+        {
+          "t": 0.45,
+          "string": "300.0 ms"
+        },
+        {
+          "t": 0.5,
+          "string": "300.0 ms"
+        },
+        {
+          "t": 0.55,
+          "string": "300.0 ms"
+        },
+        {
+          "t": 0.6,
+          "string": "300.0 ms"
+        },
+        {
+          "t": 0.65,
+          "string": "300.0 ms"
+        },
+        {
+          "t": 0.7,
+          "string": "300.0 ms"
+        },
+        {
+          "t": 0.75,
+          "string": "300.0 ms"
+        },
+        {
+          "t": 0.8,
+          "string": "300.0 ms"
+        },
+        {
+          "t": 0.85,
+          "string": "300.0 ms"
+        },
+        {
+          "t": 0.9,
+          "string": "300.0 ms"
+        },
+        {
+          "t": 0.95,
+          "string": "300.0 ms"
+        },
+        {
+          "t": 1,
+          "string": "300.0 ms"
+        }
+      ],
+      "taper": [
+        {
+          "t": 0,
+          "string": "0.0 ms"
+        },
+        {
+          "t": 0.05,
+          "string": "30.0 ms"
+        },
+        {
+          "t": 0.1,
+          "string": "60.0 ms"
+        },
+        {
+          "t": 0.15,
+          "string": "90.0 ms"
+        },
+        {
+          "t": 0.2,
+          "string": "120.0 ms"
+        },
+        {
+          "t": 0.25,
+          "string": "150.0 ms"
+        },
+        {
+          "t": 0.3,
+          "string": "180.0 ms"
+        },
+        {
+          "t": 0.35,
+          "string": "210.0 ms"
+        },
+        {
+          "t": 0.4,
+          "string": "240.0 ms"
+        },
+        {
+          "t": 0.45,
+          "string": "270.0 ms"
+        },
+        {
+          "t": 0.5,
+          "string": "300.0 ms"
+        },
+        {
+          "t": 0.55,
+          "string": "357.7 ms"
+        },
+        {
+          "t": 0.6,
+          "string": "415.4 ms"
+        },
+        {
+          "t": 0.65,
+          "string": "473.1 ms"
+        },
+        {
+          "t": 0.7,
+          "string": "530.8 ms"
+        },
+        {
+          "t": 0.75,
+          "string": "588.5 ms"
+        },
+        {
+          "t": 0.8,
+          "string": "800.0 ms"
+        },
+        {
+          "t": 0.85,
+          "string": "1050.0 ms"
+        },
+        {
+          "t": 0.9,
+          "string": "1300.0 ms"
+        },
+        {
+          "t": 0.95,
+          "string": "1583.3 ms"
+        },
+        {
+          "t": 1,
+          "string": "2000.0 ms"
+        }
+      ],
+      "string_plateaus": {
+        "sweep_points": 1001,
+        "method": "t = k/1000 for k in 0..1000, write sweep, consecutive equal strings collapsed",
+        "distinct_run_count": 1001,
+        "runs": null,
+        "runs_omitted_reason": "more than 64 distinct runs, i.e. continuous rather than stepped; the 21-point taper is the sample"
+      }
+    },
+    {
+      "index": 4,
+      "vst3_param_id": "52",
+      "vst3_param_id_numeric": 52,
+      "name": "DelayWarp",
+      "label": null,
+      "label_note": "AudioProcessorParameter::getLabel() -> VST3 ParameterInfo::units. null means the plugin left that field empty; the unit is then only visible inside the display strings.",
+      "value_domain": "JUCE normalises every VST3 parameter to 0..1; min and max below are that normalised domain, not the plugin's real-world range. The real-world range is only observable through the display strings.",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "default_is_normalised": true,
+      "default_string": "0.0 %",
+      "current_value_untouched": 0,
+      "current_value_string_untouched": "0.0 %",
+      "num_steps": 2147483647,
+      "num_steps_is_juce_default_for_continuous": true,
+      "num_steps_note": "JUCE derives this from VST3 ParameterInfo::stepCount: stepCount 0 means 'continuous' and JUCE substitutes its default step count. A parameter that displays as an enum but reports the default step count is one the plugin declared continuous.",
+      "is_discrete": false,
+      "is_boolean": false,
+      "is_quantized_declared": false,
+      "is_bypass_parameter": false,
+      "is_automatable": true,
+      "is_meta_parameter": false,
+      "is_orientation_inverted": false,
+      "value_items_from_getAllValueStrings": null,
+      "value_items_from_getAllValueStrings_note": "JUCE 8's VST3Parameter::getAllValueStrings() returns {} unconditionally. A null here is a JUCE limitation, not a statement about the plugin. The measured string_plateaus below are the real item source.",
+      "value_items": null,
+      "value_items_source": null,
+      "taper_method": "write sweep: setParamNormalized(id, t) then getParamStringByValue, original value restored",
+      "read_only_sweep_was_constant": true,
+      "read_only_sweep_constant_note": "getParamStringByValue returned the same string for every t, i.e. the plugin ignores the value argument and formats its current value. See taper_read_only for the evidence.",
+      "write_sweep_also_constant": false,
+      "string_after_restore": "0.0 %",
+      "restored_cleanly": true,
+      "restored_cleanly_note": "true means that after the sweep, with every parameter set back to its snapshot value, this parameter formatted exactly as it did on the untouched instance. False means the plugin latched state the sweep could not undo, and this parameter's taper may be contaminated.",
+      "taper_read_only": [
+        {
+          "t": 0,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.05,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.1,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.15,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.2,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.25,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.3,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.35,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.4,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.45,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.5,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.55,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.6,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.65,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.7,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.75,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.8,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.85,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.9,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.95,
+          "string": "0.0 %"
+        },
+        {
+          "t": 1,
+          "string": "0.0 %"
+        }
+      ],
+      "taper": [
+        {
+          "t": 0,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.05,
+          "string": "5.0 %"
+        },
+        {
+          "t": 0.1,
+          "string": "10.0 %"
+        },
+        {
+          "t": 0.15,
+          "string": "15.0 %"
+        },
+        {
+          "t": 0.2,
+          "string": "20.0 %"
+        },
+        {
+          "t": 0.25,
+          "string": "25.0 %"
+        },
+        {
+          "t": 0.3,
+          "string": "30.0 %"
+        },
+        {
+          "t": 0.35,
+          "string": "35.0 %"
+        },
+        {
+          "t": 0.4,
+          "string": "40.0 %"
+        },
+        {
+          "t": 0.45,
+          "string": "45.0 %"
+        },
+        {
+          "t": 0.5,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.55,
+          "string": "55.0 %"
+        },
+        {
+          "t": 0.6,
+          "string": "60.0 %"
+        },
+        {
+          "t": 0.65,
+          "string": "65.0 %"
+        },
+        {
+          "t": 0.7,
+          "string": "70.0 %"
+        },
+        {
+          "t": 0.75,
+          "string": "75.0 %"
+        },
+        {
+          "t": 0.8,
+          "string": "80.0 %"
+        },
+        {
+          "t": 0.85,
+          "string": "85.0 %"
+        },
+        {
+          "t": 0.9,
+          "string": "90.0 %"
+        },
+        {
+          "t": 0.95,
+          "string": "95.0 %"
+        },
+        {
+          "t": 1,
+          "string": "100.0 %"
+        }
+      ],
+      "string_plateaus": {
+        "sweep_points": 1001,
+        "method": "t = k/1000 for k in 0..1000, write sweep, consecutive equal strings collapsed",
+        "distinct_run_count": 1001,
+        "runs": null,
+        "runs_omitted_reason": "more than 64 distinct runs, i.e. continuous rather than stepped; the 21-point taper is the sample"
+      }
+    },
+    {
+      "index": 5,
+      "vst3_param_id": "53",
+      "vst3_param_id_numeric": 53,
+      "name": "Clear",
+      "label": null,
+      "label_note": "AudioProcessorParameter::getLabel() -> VST3 ParameterInfo::units. null means the plugin left that field empty; the unit is then only visible inside the display strings.",
+      "value_domain": "JUCE normalises every VST3 parameter to 0..1; min and max below are that normalised domain, not the plugin's real-world range. The real-world range is only observable through the display strings.",
+      "min": 0,
+      "max": 1,
+      "default": 1,
+      "default_is_normalised": true,
+      "default_string": "Cleared",
+      "current_value_untouched": 1,
+      "current_value_string_untouched": "Cleared",
+      "num_steps": 2147483647,
+      "num_steps_is_juce_default_for_continuous": true,
+      "num_steps_note": "JUCE derives this from VST3 ParameterInfo::stepCount: stepCount 0 means 'continuous' and JUCE substitutes its default step count. A parameter that displays as an enum but reports the default step count is one the plugin declared continuous.",
+      "is_discrete": false,
+      "is_boolean": false,
+      "is_quantized_declared": false,
+      "is_bypass_parameter": false,
+      "is_automatable": true,
+      "is_meta_parameter": false,
+      "is_orientation_inverted": false,
+      "value_items_from_getAllValueStrings": null,
+      "value_items_from_getAllValueStrings_note": "JUCE 8's VST3Parameter::getAllValueStrings() returns {} unconditionally. A null here is a JUCE limitation, not a statement about the plugin. The measured string_plateaus below are the real item source.",
+      "value_items": [
+        "ClearedAgain ",
+        "Cleared"
+      ],
+      "value_items_source": "measured: distinct runs of the 1001-point display-string sweep, in order",
+      "taper_method": "write sweep: setParamNormalized(id, t) then getParamStringByValue, original value restored",
+      "read_only_sweep_was_constant": true,
+      "read_only_sweep_constant_note": "getParamStringByValue returned the same string for every t, i.e. the plugin ignores the value argument and formats its current value. See taper_read_only for the evidence.",
+      "write_sweep_also_constant": false,
+      "string_after_restore": "Cleared",
+      "restored_cleanly": true,
+      "restored_cleanly_note": "true means that after the sweep, with every parameter set back to its snapshot value, this parameter formatted exactly as it did on the untouched instance. False means the plugin latched state the sweep could not undo, and this parameter's taper may be contaminated.",
+      "taper_read_only": [
+        {
+          "t": 0,
+          "string": "Cleared"
+        },
+        {
+          "t": 0.05,
+          "string": "Cleared"
+        },
+        {
+          "t": 0.1,
+          "string": "Cleared"
+        },
+        {
+          "t": 0.15,
+          "string": "Cleared"
+        },
+        {
+          "t": 0.2,
+          "string": "Cleared"
+        },
+        {
+          "t": 0.25,
+          "string": "Cleared"
+        },
+        {
+          "t": 0.3,
+          "string": "Cleared"
+        },
+        {
+          "t": 0.35,
+          "string": "Cleared"
+        },
+        {
+          "t": 0.4,
+          "string": "Cleared"
+        },
+        {
+          "t": 0.45,
+          "string": "Cleared"
+        },
+        {
+          "t": 0.5,
+          "string": "Cleared"
+        },
+        {
+          "t": 0.55,
+          "string": "Cleared"
+        },
+        {
+          "t": 0.6,
+          "string": "Cleared"
+        },
+        {
+          "t": 0.65,
+          "string": "Cleared"
+        },
+        {
+          "t": 0.7,
+          "string": "Cleared"
+        },
+        {
+          "t": 0.75,
+          "string": "Cleared"
+        },
+        {
+          "t": 0.8,
+          "string": "Cleared"
+        },
+        {
+          "t": 0.85,
+          "string": "Cleared"
+        },
+        {
+          "t": 0.9,
+          "string": "Cleared"
+        },
+        {
+          "t": 0.95,
+          "string": "Cleared"
+        },
+        {
+          "t": 1,
+          "string": "Cleared"
+        }
+      ],
+      "taper": [
+        {
+          "t": 0,
+          "string": "ClearedAgain "
+        },
+        {
+          "t": 0.05,
+          "string": "ClearedAgain "
+        },
+        {
+          "t": 0.1,
+          "string": "ClearedAgain "
+        },
+        {
+          "t": 0.15,
+          "string": "ClearedAgain "
+        },
+        {
+          "t": 0.2,
+          "string": "ClearedAgain "
+        },
+        {
+          "t": 0.25,
+          "string": "ClearedAgain "
+        },
+        {
+          "t": 0.3,
+          "string": "ClearedAgain "
+        },
+        {
+          "t": 0.35,
+          "string": "ClearedAgain "
+        },
+        {
+          "t": 0.4,
+          "string": "ClearedAgain "
+        },
+        {
+          "t": 0.45,
+          "string": "ClearedAgain "
+        },
+        {
+          "t": 0.5,
+          "string": "Cleared"
+        },
+        {
+          "t": 0.55,
+          "string": "Cleared"
+        },
+        {
+          "t": 0.6,
+          "string": "Cleared"
+        },
+        {
+          "t": 0.65,
+          "string": "Cleared"
+        },
+        {
+          "t": 0.7,
+          "string": "Cleared"
+        },
+        {
+          "t": 0.75,
+          "string": "Cleared"
+        },
+        {
+          "t": 0.8,
+          "string": "Cleared"
+        },
+        {
+          "t": 0.85,
+          "string": "Cleared"
+        },
+        {
+          "t": 0.9,
+          "string": "Cleared"
+        },
+        {
+          "t": 0.95,
+          "string": "Cleared"
+        },
+        {
+          "t": 1,
+          "string": "Cleared"
+        }
+      ],
+      "string_plateaus": {
+        "sweep_points": 1001,
+        "method": "t = k/1000 for k in 0..1000, write sweep, consecutive equal strings collapsed",
+        "distinct_run_count": 2,
+        "runs": [
+          {
+            "run_index": 0,
+            "string": "ClearedAgain ",
+            "t_first": 0,
+            "t_last": 0.499,
+            "sample_count": 500
+          },
+          {
+            "run_index": 1,
+            "string": "Cleared",
+            "t_first": 0.5,
+            "t_last": 1,
+            "sample_count": 501
+          }
+        ],
+        "runs_omitted_reason": null
+      }
+    },
+    {
+      "index": 6,
+      "vst3_param_id": "54",
+      "vst3_param_id_numeric": 54,
+      "name": "Feedback",
+      "label": null,
+      "label_note": "AudioProcessorParameter::getLabel() -> VST3 ParameterInfo::units. null means the plugin left that field empty; the unit is then only visible inside the display strings.",
+      "value_domain": "JUCE normalises every VST3 parameter to 0..1; min and max below are that normalised domain, not the plugin's real-world range. The real-world range is only observable through the display strings.",
+      "min": 0,
+      "max": 1,
+      "default": 0.5,
+      "default_is_normalised": true,
+      "default_string": "50.0 %",
+      "current_value_untouched": 0.5,
+      "current_value_string_untouched": "50.0 %",
+      "num_steps": 2147483647,
+      "num_steps_is_juce_default_for_continuous": true,
+      "num_steps_note": "JUCE derives this from VST3 ParameterInfo::stepCount: stepCount 0 means 'continuous' and JUCE substitutes its default step count. A parameter that displays as an enum but reports the default step count is one the plugin declared continuous.",
+      "is_discrete": false,
+      "is_boolean": false,
+      "is_quantized_declared": false,
+      "is_bypass_parameter": false,
+      "is_automatable": true,
+      "is_meta_parameter": false,
+      "is_orientation_inverted": false,
+      "value_items_from_getAllValueStrings": null,
+      "value_items_from_getAllValueStrings_note": "JUCE 8's VST3Parameter::getAllValueStrings() returns {} unconditionally. A null here is a JUCE limitation, not a statement about the plugin. The measured string_plateaus below are the real item source.",
+      "value_items": null,
+      "value_items_source": null,
+      "taper_method": "write sweep: setParamNormalized(id, t) then getParamStringByValue, original value restored",
+      "read_only_sweep_was_constant": true,
+      "read_only_sweep_constant_note": "getParamStringByValue returned the same string for every t, i.e. the plugin ignores the value argument and formats its current value. See taper_read_only for the evidence.",
+      "write_sweep_also_constant": false,
+      "string_after_restore": "50.0 %",
+      "restored_cleanly": true,
+      "restored_cleanly_note": "true means that after the sweep, with every parameter set back to its snapshot value, this parameter formatted exactly as it did on the untouched instance. False means the plugin latched state the sweep could not undo, and this parameter's taper may be contaminated.",
+      "taper_read_only": [
+        {
+          "t": 0,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.05,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.1,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.15,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.2,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.25,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.3,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.35,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.4,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.45,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.5,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.55,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.6,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.65,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.7,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.75,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.8,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.85,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.9,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.95,
+          "string": "50.0 %"
+        },
+        {
+          "t": 1,
+          "string": "50.0 %"
+        }
+      ],
+      "taper": [
+        {
+          "t": 0,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.05,
+          "string": "5.0 %"
+        },
+        {
+          "t": 0.1,
+          "string": "10.0 %"
+        },
+        {
+          "t": 0.15,
+          "string": "15.0 %"
+        },
+        {
+          "t": 0.2,
+          "string": "20.0 %"
+        },
+        {
+          "t": 0.25,
+          "string": "25.0 %"
+        },
+        {
+          "t": 0.3,
+          "string": "30.0 %"
+        },
+        {
+          "t": 0.35,
+          "string": "35.0 %"
+        },
+        {
+          "t": 0.4,
+          "string": "40.0 %"
+        },
+        {
+          "t": 0.45,
+          "string": "45.0 %"
+        },
+        {
+          "t": 0.5,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.55,
+          "string": "55.0 %"
+        },
+        {
+          "t": 0.6,
+          "string": "60.0 %"
+        },
+        {
+          "t": 0.65,
+          "string": "65.0 %"
+        },
+        {
+          "t": 0.7,
+          "string": "70.0 %"
+        },
+        {
+          "t": 0.75,
+          "string": "75.0 %"
+        },
+        {
+          "t": 0.8,
+          "string": "80.0 %"
+        },
+        {
+          "t": 0.85,
+          "string": "85.0 %"
+        },
+        {
+          "t": 0.9,
+          "string": "90.0 %"
+        },
+        {
+          "t": 0.95,
+          "string": "95.0 %"
+        },
+        {
+          "t": 1,
+          "string": "100.0 %"
+        }
+      ],
+      "string_plateaus": {
+        "sweep_points": 1001,
+        "method": "t = k/1000 for k in 0..1000, write sweep, consecutive equal strings collapsed",
+        "distinct_run_count": 1001,
+        "runs": null,
+        "runs_omitted_reason": "more than 64 distinct runs, i.e. continuous rather than stepped; the 21-point taper is the sample"
+      }
+    },
+    {
+      "index": 7,
+      "vst3_param_id": "55",
+      "vst3_param_id_numeric": 55,
+      "name": "Density",
+      "label": null,
+      "label_note": "AudioProcessorParameter::getLabel() -> VST3 ParameterInfo::units. null means the plugin left that field empty; the unit is then only visible inside the display strings.",
+      "value_domain": "JUCE normalises every VST3 parameter to 0..1; min and max below are that normalised domain, not the plugin's real-world range. The real-world range is only observable through the display strings.",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "default_is_normalised": true,
+      "default_string": "0.0 %",
+      "current_value_untouched": 0,
+      "current_value_string_untouched": "0.0 %",
+      "num_steps": 2147483647,
+      "num_steps_is_juce_default_for_continuous": true,
+      "num_steps_note": "JUCE derives this from VST3 ParameterInfo::stepCount: stepCount 0 means 'continuous' and JUCE substitutes its default step count. A parameter that displays as an enum but reports the default step count is one the plugin declared continuous.",
+      "is_discrete": false,
+      "is_boolean": false,
+      "is_quantized_declared": false,
+      "is_bypass_parameter": false,
+      "is_automatable": true,
+      "is_meta_parameter": false,
+      "is_orientation_inverted": false,
+      "value_items_from_getAllValueStrings": null,
+      "value_items_from_getAllValueStrings_note": "JUCE 8's VST3Parameter::getAllValueStrings() returns {} unconditionally. A null here is a JUCE limitation, not a statement about the plugin. The measured string_plateaus below are the real item source.",
+      "value_items": null,
+      "value_items_source": null,
+      "taper_method": "write sweep: setParamNormalized(id, t) then getParamStringByValue, original value restored",
+      "read_only_sweep_was_constant": true,
+      "read_only_sweep_constant_note": "getParamStringByValue returned the same string for every t, i.e. the plugin ignores the value argument and formats its current value. See taper_read_only for the evidence.",
+      "write_sweep_also_constant": false,
+      "string_after_restore": "0.0 %",
+      "restored_cleanly": true,
+      "restored_cleanly_note": "true means that after the sweep, with every parameter set back to its snapshot value, this parameter formatted exactly as it did on the untouched instance. False means the plugin latched state the sweep could not undo, and this parameter's taper may be contaminated.",
+      "taper_read_only": [
+        {
+          "t": 0,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.05,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.1,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.15,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.2,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.25,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.3,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.35,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.4,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.45,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.5,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.55,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.6,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.65,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.7,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.75,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.8,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.85,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.9,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.95,
+          "string": "0.0 %"
+        },
+        {
+          "t": 1,
+          "string": "0.0 %"
+        }
+      ],
+      "taper": [
+        {
+          "t": 0,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.05,
+          "string": "5.0 %"
+        },
+        {
+          "t": 0.1,
+          "string": "10.0 %"
+        },
+        {
+          "t": 0.15,
+          "string": "15.0 %"
+        },
+        {
+          "t": 0.2,
+          "string": "20.0 %"
+        },
+        {
+          "t": 0.25,
+          "string": "25.0 %"
+        },
+        {
+          "t": 0.3,
+          "string": "30.0 %"
+        },
+        {
+          "t": 0.35,
+          "string": "35.0 %"
+        },
+        {
+          "t": 0.4,
+          "string": "40.0 %"
+        },
+        {
+          "t": 0.45,
+          "string": "45.0 %"
+        },
+        {
+          "t": 0.5,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.55,
+          "string": "55.0 %"
+        },
+        {
+          "t": 0.6,
+          "string": "60.0 %"
+        },
+        {
+          "t": 0.65,
+          "string": "65.0 %"
+        },
+        {
+          "t": 0.7,
+          "string": "70.0 %"
+        },
+        {
+          "t": 0.75,
+          "string": "75.0 %"
+        },
+        {
+          "t": 0.8,
+          "string": "80.0 %"
+        },
+        {
+          "t": 0.85,
+          "string": "85.0 %"
+        },
+        {
+          "t": 0.9,
+          "string": "90.0 %"
+        },
+        {
+          "t": 0.95,
+          "string": "95.0 %"
+        },
+        {
+          "t": 1,
+          "string": "100.0 %"
+        }
+      ],
+      "string_plateaus": {
+        "sweep_points": 1001,
+        "method": "t = k/1000 for k in 0..1000, write sweep, consecutive equal strings collapsed",
+        "distinct_run_count": 1001,
+        "runs": null,
+        "runs_omitted_reason": "more than 64 distinct runs, i.e. continuous rather than stepped; the 21-point taper is the sample"
+      }
+    },
+    {
+      "index": 8,
+      "vst3_param_id": "56",
+      "vst3_param_id_numeric": 56,
+      "name": "Width",
+      "label": null,
+      "label_note": "AudioProcessorParameter::getLabel() -> VST3 ParameterInfo::units. null means the plugin left that field empty; the unit is then only visible inside the display strings.",
+      "value_domain": "JUCE normalises every VST3 parameter to 0..1; min and max below are that normalised domain, not the plugin's real-world range. The real-world range is only observable through the display strings.",
+      "min": 0,
+      "max": 1,
+      "default": 1,
+      "default_is_normalised": true,
+      "default_string": "100.0 %",
+      "current_value_untouched": 1,
+      "current_value_string_untouched": "100.0 %",
+      "num_steps": 2147483647,
+      "num_steps_is_juce_default_for_continuous": true,
+      "num_steps_note": "JUCE derives this from VST3 ParameterInfo::stepCount: stepCount 0 means 'continuous' and JUCE substitutes its default step count. A parameter that displays as an enum but reports the default step count is one the plugin declared continuous.",
+      "is_discrete": false,
+      "is_boolean": false,
+      "is_quantized_declared": false,
+      "is_bypass_parameter": false,
+      "is_automatable": true,
+      "is_meta_parameter": false,
+      "is_orientation_inverted": false,
+      "value_items_from_getAllValueStrings": null,
+      "value_items_from_getAllValueStrings_note": "JUCE 8's VST3Parameter::getAllValueStrings() returns {} unconditionally. A null here is a JUCE limitation, not a statement about the plugin. The measured string_plateaus below are the real item source.",
+      "value_items": null,
+      "value_items_source": null,
+      "taper_method": "write sweep: setParamNormalized(id, t) then getParamStringByValue, original value restored",
+      "read_only_sweep_was_constant": true,
+      "read_only_sweep_constant_note": "getParamStringByValue returned the same string for every t, i.e. the plugin ignores the value argument and formats its current value. See taper_read_only for the evidence.",
+      "write_sweep_also_constant": false,
+      "string_after_restore": "100.0 %",
+      "restored_cleanly": true,
+      "restored_cleanly_note": "true means that after the sweep, with every parameter set back to its snapshot value, this parameter formatted exactly as it did on the untouched instance. False means the plugin latched state the sweep could not undo, and this parameter's taper may be contaminated.",
+      "taper_read_only": [
+        {
+          "t": 0,
+          "string": "100.0 %"
+        },
+        {
+          "t": 0.05,
+          "string": "100.0 %"
+        },
+        {
+          "t": 0.1,
+          "string": "100.0 %"
+        },
+        {
+          "t": 0.15,
+          "string": "100.0 %"
+        },
+        {
+          "t": 0.2,
+          "string": "100.0 %"
+        },
+        {
+          "t": 0.25,
+          "string": "100.0 %"
+        },
+        {
+          "t": 0.3,
+          "string": "100.0 %"
+        },
+        {
+          "t": 0.35,
+          "string": "100.0 %"
+        },
+        {
+          "t": 0.4,
+          "string": "100.0 %"
+        },
+        {
+          "t": 0.45,
+          "string": "100.0 %"
+        },
+        {
+          "t": 0.5,
+          "string": "100.0 %"
+        },
+        {
+          "t": 0.55,
+          "string": "100.0 %"
+        },
+        {
+          "t": 0.6,
+          "string": "100.0 %"
+        },
+        {
+          "t": 0.65,
+          "string": "100.0 %"
+        },
+        {
+          "t": 0.7,
+          "string": "100.0 %"
+        },
+        {
+          "t": 0.75,
+          "string": "100.0 %"
+        },
+        {
+          "t": 0.8,
+          "string": "100.0 %"
+        },
+        {
+          "t": 0.85,
+          "string": "100.0 %"
+        },
+        {
+          "t": 0.9,
+          "string": "100.0 %"
+        },
+        {
+          "t": 0.95,
+          "string": "100.0 %"
+        },
+        {
+          "t": 1,
+          "string": "100.0 %"
+        }
+      ],
+      "taper": [
+        {
+          "t": 0,
+          "string": "-100.0 %"
+        },
+        {
+          "t": 0.05,
+          "string": "-90.0 %"
+        },
+        {
+          "t": 0.1,
+          "string": "-80.0 %"
+        },
+        {
+          "t": 0.15,
+          "string": "-70.0 %"
+        },
+        {
+          "t": 0.2,
+          "string": "-60.0 %"
+        },
+        {
+          "t": 0.25,
+          "string": "-50.0 %"
+        },
+        {
+          "t": 0.3,
+          "string": "-40.0 %"
+        },
+        {
+          "t": 0.35,
+          "string": "-30.0 %"
+        },
+        {
+          "t": 0.4,
+          "string": "-20.0 %"
+        },
+        {
+          "t": 0.45,
+          "string": "-10.0 %"
+        },
+        {
+          "t": 0.5,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.55,
+          "string": "10.0 %"
+        },
+        {
+          "t": 0.6,
+          "string": "20.0 %"
+        },
+        {
+          "t": 0.65,
+          "string": "30.0 %"
+        },
+        {
+          "t": 0.7,
+          "string": "40.0 %"
+        },
+        {
+          "t": 0.75,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.8,
+          "string": "60.0 %"
+        },
+        {
+          "t": 0.85,
+          "string": "70.0 %"
+        },
+        {
+          "t": 0.9,
+          "string": "80.0 %"
+        },
+        {
+          "t": 0.95,
+          "string": "90.0 %"
+        },
+        {
+          "t": 1,
+          "string": "100.0 %"
+        }
+      ],
+      "string_plateaus": {
+        "sweep_points": 1001,
+        "method": "t = k/1000 for k in 0..1000, write sweep, consecutive equal strings collapsed",
+        "distinct_run_count": 1001,
+        "runs": null,
+        "runs_omitted_reason": "more than 64 distinct runs, i.e. continuous rather than stepped; the 21-point taper is the sample"
+      }
+    },
+    {
+      "index": 9,
+      "vst3_param_id": "57",
+      "vst3_param_id_numeric": 57,
+      "name": "LowCut",
+      "label": null,
+      "label_note": "AudioProcessorParameter::getLabel() -> VST3 ParameterInfo::units. null means the plugin left that field empty; the unit is then only visible inside the display strings.",
+      "value_domain": "JUCE normalises every VST3 parameter to 0..1; min and max below are that normalised domain, not the plugin's real-world range. The real-world range is only observable through the display strings.",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "default_is_normalised": true,
+      "default_string": "10 Hz",
+      "current_value_untouched": 0,
+      "current_value_string_untouched": "10 Hz",
+      "num_steps": 2147483647,
+      "num_steps_is_juce_default_for_continuous": true,
+      "num_steps_note": "JUCE derives this from VST3 ParameterInfo::stepCount: stepCount 0 means 'continuous' and JUCE substitutes its default step count. A parameter that displays as an enum but reports the default step count is one the plugin declared continuous.",
+      "is_discrete": false,
+      "is_boolean": false,
+      "is_quantized_declared": false,
+      "is_bypass_parameter": false,
+      "is_automatable": true,
+      "is_meta_parameter": false,
+      "is_orientation_inverted": false,
+      "value_items_from_getAllValueStrings": null,
+      "value_items_from_getAllValueStrings_note": "JUCE 8's VST3Parameter::getAllValueStrings() returns {} unconditionally. A null here is a JUCE limitation, not a statement about the plugin. The measured string_plateaus below are the real item source.",
+      "value_items": null,
+      "value_items_source": null,
+      "taper_method": "write sweep: setParamNormalized(id, t) then getParamStringByValue, original value restored",
+      "read_only_sweep_was_constant": true,
+      "read_only_sweep_constant_note": "getParamStringByValue returned the same string for every t, i.e. the plugin ignores the value argument and formats its current value. See taper_read_only for the evidence.",
+      "write_sweep_also_constant": false,
+      "string_after_restore": "10 Hz",
+      "restored_cleanly": true,
+      "restored_cleanly_note": "true means that after the sweep, with every parameter set back to its snapshot value, this parameter formatted exactly as it did on the untouched instance. False means the plugin latched state the sweep could not undo, and this parameter's taper may be contaminated.",
+      "taper_read_only": [
+        {
+          "t": 0,
+          "string": "10 Hz"
+        },
+        {
+          "t": 0.05,
+          "string": "10 Hz"
+        },
+        {
+          "t": 0.1,
+          "string": "10 Hz"
+        },
+        {
+          "t": 0.15,
+          "string": "10 Hz"
+        },
+        {
+          "t": 0.2,
+          "string": "10 Hz"
+        },
+        {
+          "t": 0.25,
+          "string": "10 Hz"
+        },
+        {
+          "t": 0.3,
+          "string": "10 Hz"
+        },
+        {
+          "t": 0.35,
+          "string": "10 Hz"
+        },
+        {
+          "t": 0.4,
+          "string": "10 Hz"
+        },
+        {
+          "t": 0.45,
+          "string": "10 Hz"
+        },
+        {
+          "t": 0.5,
+          "string": "10 Hz"
+        },
+        {
+          "t": 0.55,
+          "string": "10 Hz"
+        },
+        {
+          "t": 0.6,
+          "string": "10 Hz"
+        },
+        {
+          "t": 0.65,
+          "string": "10 Hz"
+        },
+        {
+          "t": 0.7,
+          "string": "10 Hz"
+        },
+        {
+          "t": 0.75,
+          "string": "10 Hz"
+        },
+        {
+          "t": 0.8,
+          "string": "10 Hz"
+        },
+        {
+          "t": 0.85,
+          "string": "10 Hz"
+        },
+        {
+          "t": 0.9,
+          "string": "10 Hz"
+        },
+        {
+          "t": 0.95,
+          "string": "10 Hz"
+        },
+        {
+          "t": 1,
+          "string": "10 Hz"
+        }
+      ],
+      "taper": [
+        {
+          "t": 0,
+          "string": "10 Hz"
+        },
+        {
+          "t": 0.05,
+          "string": "110 Hz"
+        },
+        {
+          "t": 0.1,
+          "string": "210 Hz"
+        },
+        {
+          "t": 0.15,
+          "string": "310 Hz"
+        },
+        {
+          "t": 0.2,
+          "string": "410 Hz"
+        },
+        {
+          "t": 0.25,
+          "string": "510 Hz"
+        },
+        {
+          "t": 0.3,
+          "string": "610 Hz"
+        },
+        {
+          "t": 0.35,
+          "string": "710 Hz"
+        },
+        {
+          "t": 0.4,
+          "string": "810 Hz"
+        },
+        {
+          "t": 0.45,
+          "string": "910 Hz"
+        },
+        {
+          "t": 0.5,
+          "string": "1000 Hz"
+        },
+        {
+          "t": 0.55,
+          "string": "1100 Hz"
+        },
+        {
+          "t": 0.6,
+          "string": "1200 Hz"
+        },
+        {
+          "t": 0.65,
+          "string": "1300 Hz"
+        },
+        {
+          "t": 0.7,
+          "string": "1400 Hz"
+        },
+        {
+          "t": 0.75,
+          "string": "1500 Hz"
+        },
+        {
+          "t": 0.8,
+          "string": "1600 Hz"
+        },
+        {
+          "t": 0.85,
+          "string": "1700 Hz"
+        },
+        {
+          "t": 0.9,
+          "string": "1800 Hz"
+        },
+        {
+          "t": 0.95,
+          "string": "1900 Hz"
+        },
+        {
+          "t": 1,
+          "string": "2000 Hz"
+        }
+      ],
+      "string_plateaus": {
+        "sweep_points": 1001,
+        "method": "t = k/1000 for k in 0..1000, write sweep, consecutive equal strings collapsed",
+        "distinct_run_count": 200,
+        "runs": null,
+        "runs_omitted_reason": "more than 64 distinct runs, i.e. continuous rather than stepped; the 21-point taper is the sample"
+      }
+    },
+    {
+      "index": 10,
+      "vst3_param_id": "1567",
+      "vst3_param_id_numeric": 1567,
+      "name": "HighCut",
+      "label": null,
+      "label_note": "AudioProcessorParameter::getLabel() -> VST3 ParameterInfo::units. null means the plugin left that field empty; the unit is then only visible inside the display strings.",
+      "value_domain": "JUCE normalises every VST3 parameter to 0..1; min and max below are that normalised domain, not the plugin's real-world range. The real-world range is only observable through the display strings.",
+      "min": 0,
+      "max": 1,
+      "default": 1,
+      "default_is_normalised": true,
+      "default_string": "20000 Hz",
+      "current_value_untouched": 1,
+      "current_value_string_untouched": "20000 Hz",
+      "num_steps": 2147483647,
+      "num_steps_is_juce_default_for_continuous": true,
+      "num_steps_note": "JUCE derives this from VST3 ParameterInfo::stepCount: stepCount 0 means 'continuous' and JUCE substitutes its default step count. A parameter that displays as an enum but reports the default step count is one the plugin declared continuous.",
+      "is_discrete": false,
+      "is_boolean": false,
+      "is_quantized_declared": false,
+      "is_bypass_parameter": false,
+      "is_automatable": true,
+      "is_meta_parameter": false,
+      "is_orientation_inverted": false,
+      "value_items_from_getAllValueStrings": null,
+      "value_items_from_getAllValueStrings_note": "JUCE 8's VST3Parameter::getAllValueStrings() returns {} unconditionally. A null here is a JUCE limitation, not a statement about the plugin. The measured string_plateaus below are the real item source.",
+      "value_items": null,
+      "value_items_source": null,
+      "taper_method": "write sweep: setParamNormalized(id, t) then getParamStringByValue, original value restored",
+      "read_only_sweep_was_constant": true,
+      "read_only_sweep_constant_note": "getParamStringByValue returned the same string for every t, i.e. the plugin ignores the value argument and formats its current value. See taper_read_only for the evidence.",
+      "write_sweep_also_constant": false,
+      "string_after_restore": "20000 Hz",
+      "restored_cleanly": true,
+      "restored_cleanly_note": "true means that after the sweep, with every parameter set back to its snapshot value, this parameter formatted exactly as it did on the untouched instance. False means the plugin latched state the sweep could not undo, and this parameter's taper may be contaminated.",
+      "taper_read_only": [
+        {
+          "t": 0,
+          "string": "20000 Hz"
+        },
+        {
+          "t": 0.05,
+          "string": "20000 Hz"
+        },
+        {
+          "t": 0.1,
+          "string": "20000 Hz"
+        },
+        {
+          "t": 0.15,
+          "string": "20000 Hz"
+        },
+        {
+          "t": 0.2,
+          "string": "20000 Hz"
+        },
+        {
+          "t": 0.25,
+          "string": "20000 Hz"
+        },
+        {
+          "t": 0.3,
+          "string": "20000 Hz"
+        },
+        {
+          "t": 0.35,
+          "string": "20000 Hz"
+        },
+        {
+          "t": 0.4,
+          "string": "20000 Hz"
+        },
+        {
+          "t": 0.45,
+          "string": "20000 Hz"
+        },
+        {
+          "t": 0.5,
+          "string": "20000 Hz"
+        },
+        {
+          "t": 0.55,
+          "string": "20000 Hz"
+        },
+        {
+          "t": 0.6,
+          "string": "20000 Hz"
+        },
+        {
+          "t": 0.65,
+          "string": "20000 Hz"
+        },
+        {
+          "t": 0.7,
+          "string": "20000 Hz"
+        },
+        {
+          "t": 0.75,
+          "string": "20000 Hz"
+        },
+        {
+          "t": 0.8,
+          "string": "20000 Hz"
+        },
+        {
+          "t": 0.85,
+          "string": "20000 Hz"
+        },
+        {
+          "t": 0.9,
+          "string": "20000 Hz"
+        },
+        {
+          "t": 0.95,
+          "string": "20000 Hz"
+        },
+        {
+          "t": 1,
+          "string": "20000 Hz"
+        }
+      ],
+      "taper": [
+        {
+          "t": 0,
+          "string": "200 Hz"
+        },
+        {
+          "t": 0.05,
+          "string": "1190 Hz"
+        },
+        {
+          "t": 0.1,
+          "string": "2180 Hz"
+        },
+        {
+          "t": 0.15,
+          "string": "3170 Hz"
+        },
+        {
+          "t": 0.2,
+          "string": "4160 Hz"
+        },
+        {
+          "t": 0.25,
+          "string": "5150 Hz"
+        },
+        {
+          "t": 0.3,
+          "string": "6140 Hz"
+        },
+        {
+          "t": 0.35,
+          "string": "7130 Hz"
+        },
+        {
+          "t": 0.4,
+          "string": "8120 Hz"
+        },
+        {
+          "t": 0.45,
+          "string": "9110 Hz"
+        },
+        {
+          "t": 0.5,
+          "string": "10100 Hz"
+        },
+        {
+          "t": 0.55,
+          "string": "11090 Hz"
+        },
+        {
+          "t": 0.6,
+          "string": "12080 Hz"
+        },
+        {
+          "t": 0.65,
+          "string": "13070 Hz"
+        },
+        {
+          "t": 0.7,
+          "string": "14060 Hz"
+        },
+        {
+          "t": 0.75,
+          "string": "15050 Hz"
+        },
+        {
+          "t": 0.8,
+          "string": "16040 Hz"
+        },
+        {
+          "t": 0.85,
+          "string": "17030 Hz"
+        },
+        {
+          "t": 0.9,
+          "string": "18020 Hz"
+        },
+        {
+          "t": 0.95,
+          "string": "19010 Hz"
+        },
+        {
+          "t": 1,
+          "string": "20000 Hz"
+        }
+      ],
+      "string_plateaus": {
+        "sweep_points": 1001,
+        "method": "t = k/1000 for k in 0..1000, write sweep, consecutive equal strings collapsed",
+        "distinct_run_count": 1001,
+        "runs": null,
+        "runs_omitted_reason": "more than 64 distinct runs, i.e. continuous rather than stepped; the 21-point taper is the sample"
+      }
+    },
+    {
+      "index": 11,
+      "vst3_param_id": "1568",
+      "vst3_param_id_numeric": 1568,
+      "name": "ModRate",
+      "label": null,
+      "label_note": "AudioProcessorParameter::getLabel() -> VST3 ParameterInfo::units. null means the plugin left that field empty; the unit is then only visible inside the display strings.",
+      "value_domain": "JUCE normalises every VST3 parameter to 0..1; min and max below are that normalised domain, not the plugin's real-world range. The real-world range is only observable through the display strings.",
+      "min": 0,
+      "max": 1,
+      "default": 0.2738341,
+      "default_is_normalised": true,
+      "default_string": "0.50 Hz",
+      "current_value_untouched": 0.2738341,
+      "current_value_string_untouched": "0.50 Hz",
+      "num_steps": 2147483647,
+      "num_steps_is_juce_default_for_continuous": true,
+      "num_steps_note": "JUCE derives this from VST3 ParameterInfo::stepCount: stepCount 0 means 'continuous' and JUCE substitutes its default step count. A parameter that displays as an enum but reports the default step count is one the plugin declared continuous.",
+      "is_discrete": false,
+      "is_boolean": false,
+      "is_quantized_declared": false,
+      "is_bypass_parameter": false,
+      "is_automatable": true,
+      "is_meta_parameter": false,
+      "is_orientation_inverted": false,
+      "value_items_from_getAllValueStrings": null,
+      "value_items_from_getAllValueStrings_note": "JUCE 8's VST3Parameter::getAllValueStrings() returns {} unconditionally. A null here is a JUCE limitation, not a statement about the plugin. The measured string_plateaus below are the real item source.",
+      "value_items": null,
+      "value_items_source": null,
+      "taper_method": "write sweep: setParamNormalized(id, t) then getParamStringByValue, original value restored",
+      "read_only_sweep_was_constant": true,
+      "read_only_sweep_constant_note": "getParamStringByValue returned the same string for every t, i.e. the plugin ignores the value argument and formats its current value. See taper_read_only for the evidence.",
+      "write_sweep_also_constant": false,
+      "string_after_restore": "0.50 Hz",
+      "restored_cleanly": true,
+      "restored_cleanly_note": "true means that after the sweep, with every parameter set back to its snapshot value, this parameter formatted exactly as it did on the untouched instance. False means the plugin latched state the sweep could not undo, and this parameter's taper may be contaminated.",
+      "taper_read_only": [
+        {
+          "t": 0,
+          "string": "0.50 Hz"
+        },
+        {
+          "t": 0.05,
+          "string": "0.50 Hz"
+        },
+        {
+          "t": 0.1,
+          "string": "0.50 Hz"
+        },
+        {
+          "t": 0.15,
+          "string": "0.50 Hz"
+        },
+        {
+          "t": 0.2,
+          "string": "0.50 Hz"
+        },
+        {
+          "t": 0.25,
+          "string": "0.50 Hz"
+        },
+        {
+          "t": 0.3,
+          "string": "0.50 Hz"
+        },
+        {
+          "t": 0.35,
+          "string": "0.50 Hz"
+        },
+        {
+          "t": 0.4,
+          "string": "0.50 Hz"
+        },
+        {
+          "t": 0.45,
+          "string": "0.50 Hz"
+        },
+        {
+          "t": 0.5,
+          "string": "0.50 Hz"
+        },
+        {
+          "t": 0.55,
+          "string": "0.50 Hz"
+        },
+        {
+          "t": 0.6,
+          "string": "0.50 Hz"
+        },
+        {
+          "t": 0.65,
+          "string": "0.50 Hz"
+        },
+        {
+          "t": 0.7,
+          "string": "0.50 Hz"
+        },
+        {
+          "t": 0.75,
+          "string": "0.50 Hz"
+        },
+        {
+          "t": 0.8,
+          "string": "0.50 Hz"
+        },
+        {
+          "t": 0.85,
+          "string": "0.50 Hz"
+        },
+        {
+          "t": 0.9,
+          "string": "0.50 Hz"
+        },
+        {
+          "t": 0.95,
+          "string": "0.50 Hz"
+        },
+        {
+          "t": 1,
+          "string": "0.50 Hz"
+        }
+      ],
+      "taper": [
+        {
+          "t": 0,
+          "string": "0.01 Hz"
+        },
+        {
+          "t": 0.05,
+          "string": "0.02 Hz"
+        },
+        {
+          "t": 0.1,
+          "string": "0.06 Hz"
+        },
+        {
+          "t": 0.15,
+          "string": "0.13 Hz"
+        },
+        {
+          "t": 0.2,
+          "string": "0.25 Hz"
+        },
+        {
+          "t": 0.25,
+          "string": "0.41 Hz"
+        },
+        {
+          "t": 0.3,
+          "string": "0.62 Hz"
+        },
+        {
+          "t": 0.35,
+          "string": "0.88 Hz"
+        },
+        {
+          "t": 0.4,
+          "string": "1.19 Hz"
+        },
+        {
+          "t": 0.45,
+          "string": "1.57 Hz"
+        },
+        {
+          "t": 0.5,
+          "string": "2.00 Hz"
+        },
+        {
+          "t": 0.55,
+          "string": "2.49 Hz"
+        },
+        {
+          "t": 0.6,
+          "string": "3.05 Hz"
+        },
+        {
+          "t": 0.65,
+          "string": "3.68 Hz"
+        },
+        {
+          "t": 0.7,
+          "string": "4.37 Hz"
+        },
+        {
+          "t": 0.75,
+          "string": "5.12 Hz"
+        },
+        {
+          "t": 0.8,
+          "string": "5.95 Hz"
+        },
+        {
+          "t": 0.85,
+          "string": "6.85 Hz"
+        },
+        {
+          "t": 0.9,
+          "string": "7.83 Hz"
+        },
+        {
+          "t": 0.95,
+          "string": "8.88 Hz"
+        },
+        {
+          "t": 1,
+          "string": "10.00 Hz"
+        }
+      ],
+      "string_plateaus": {
+        "sweep_points": 1001,
+        "method": "t = k/1000 for k in 0..1000, write sweep, consecutive equal strings collapsed",
+        "distinct_run_count": 699,
+        "runs": null,
+        "runs_omitted_reason": "more than 64 distinct runs, i.e. continuous rather than stepped; the 21-point taper is the sample"
+      }
+    },
+    {
+      "index": 12,
+      "vst3_param_id": "1569",
+      "vst3_param_id_numeric": 1569,
+      "name": "ModDepth",
+      "label": null,
+      "label_note": "AudioProcessorParameter::getLabel() -> VST3 ParameterInfo::units. null means the plugin left that field empty; the unit is then only visible inside the display strings.",
+      "value_domain": "JUCE normalises every VST3 parameter to 0..1; min and max below are that normalised domain, not the plugin's real-world range. The real-world range is only observable through the display strings.",
+      "min": 0,
+      "max": 1,
+      "default": 0.5,
+      "default_is_normalised": true,
+      "default_string": "50.0 %",
+      "current_value_untouched": 0.5,
+      "current_value_string_untouched": "50.0 %",
+      "num_steps": 2147483647,
+      "num_steps_is_juce_default_for_continuous": true,
+      "num_steps_note": "JUCE derives this from VST3 ParameterInfo::stepCount: stepCount 0 means 'continuous' and JUCE substitutes its default step count. A parameter that displays as an enum but reports the default step count is one the plugin declared continuous.",
+      "is_discrete": false,
+      "is_boolean": false,
+      "is_quantized_declared": false,
+      "is_bypass_parameter": false,
+      "is_automatable": true,
+      "is_meta_parameter": false,
+      "is_orientation_inverted": false,
+      "value_items_from_getAllValueStrings": null,
+      "value_items_from_getAllValueStrings_note": "JUCE 8's VST3Parameter::getAllValueStrings() returns {} unconditionally. A null here is a JUCE limitation, not a statement about the plugin. The measured string_plateaus below are the real item source.",
+      "value_items": null,
+      "value_items_source": null,
+      "taper_method": "write sweep: setParamNormalized(id, t) then getParamStringByValue, original value restored",
+      "read_only_sweep_was_constant": true,
+      "read_only_sweep_constant_note": "getParamStringByValue returned the same string for every t, i.e. the plugin ignores the value argument and formats its current value. See taper_read_only for the evidence.",
+      "write_sweep_also_constant": false,
+      "string_after_restore": "50.0 %",
+      "restored_cleanly": true,
+      "restored_cleanly_note": "true means that after the sweep, with every parameter set back to its snapshot value, this parameter formatted exactly as it did on the untouched instance. False means the plugin latched state the sweep could not undo, and this parameter's taper may be contaminated.",
+      "taper_read_only": [
+        {
+          "t": 0,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.05,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.1,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.15,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.2,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.25,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.3,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.35,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.4,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.45,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.5,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.55,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.6,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.65,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.7,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.75,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.8,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.85,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.9,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.95,
+          "string": "50.0 %"
+        },
+        {
+          "t": 1,
+          "string": "50.0 %"
+        }
+      ],
+      "taper": [
+        {
+          "t": 0,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.05,
+          "string": "5.0 %"
+        },
+        {
+          "t": 0.1,
+          "string": "10.0 %"
+        },
+        {
+          "t": 0.15,
+          "string": "15.0 %"
+        },
+        {
+          "t": 0.2,
+          "string": "20.0 %"
+        },
+        {
+          "t": 0.25,
+          "string": "25.0 %"
+        },
+        {
+          "t": 0.3,
+          "string": "30.0 %"
+        },
+        {
+          "t": 0.35,
+          "string": "35.0 %"
+        },
+        {
+          "t": 0.4,
+          "string": "40.0 %"
+        },
+        {
+          "t": 0.45,
+          "string": "45.0 %"
+        },
+        {
+          "t": 0.5,
+          "string": "50.0 %"
+        },
+        {
+          "t": 0.55,
+          "string": "55.0 %"
+        },
+        {
+          "t": 0.6,
+          "string": "60.0 %"
+        },
+        {
+          "t": 0.65,
+          "string": "65.0 %"
+        },
+        {
+          "t": 0.7,
+          "string": "70.0 %"
+        },
+        {
+          "t": 0.75,
+          "string": "75.0 %"
+        },
+        {
+          "t": 0.8,
+          "string": "80.0 %"
+        },
+        {
+          "t": 0.85,
+          "string": "85.0 %"
+        },
+        {
+          "t": 0.9,
+          "string": "90.0 %"
+        },
+        {
+          "t": 0.95,
+          "string": "95.0 %"
+        },
+        {
+          "t": 1,
+          "string": "100.0 %"
+        }
+      ],
+      "string_plateaus": {
+        "sweep_points": 1001,
+        "method": "t = k/1000 for k in 0..1000, write sweep, consecutive equal strings collapsed",
+        "distinct_run_count": 1001,
+        "runs": null,
+        "runs_omitted_reason": "more than 64 distinct runs, i.e. continuous rather than stepped; the 21-point taper is the sample"
+      }
+    },
+    {
+      "index": 13,
+      "vst3_param_id": "1570",
+      "vst3_param_id_numeric": 1570,
+      "name": "Mode",
+      "label": null,
+      "label_note": "AudioProcessorParameter::getLabel() -> VST3 ParameterInfo::units. null means the plugin left that field empty; the unit is then only visible inside the display strings.",
+      "value_domain": "JUCE normalises every VST3 parameter to 0..1; min and max below are that normalised domain, not the plugin's real-world range. The real-world range is only observable through the display strings.",
+      "min": 0,
+      "max": 1,
+      "default": 0.041666668,
+      "default_is_normalised": true,
+      "default_string": "Gemini",
+      "current_value_untouched": 0.041666668,
+      "current_value_string_untouched": "Gemini",
+      "num_steps": 2147483647,
+      "num_steps_is_juce_default_for_continuous": true,
+      "num_steps_note": "JUCE derives this from VST3 ParameterInfo::stepCount: stepCount 0 means 'continuous' and JUCE substitutes its default step count. A parameter that displays as an enum but reports the default step count is one the plugin declared continuous.",
+      "is_discrete": false,
+      "is_boolean": false,
+      "is_quantized_declared": false,
+      "is_bypass_parameter": false,
+      "is_automatable": true,
+      "is_meta_parameter": false,
+      "is_orientation_inverted": false,
+      "value_items_from_getAllValueStrings": null,
+      "value_items_from_getAllValueStrings_note": "JUCE 8's VST3Parameter::getAllValueStrings() returns {} unconditionally. A null here is a JUCE limitation, not a statement about the plugin. The measured string_plateaus below are the real item source.",
+      "value_items": [
+        "Gemini",
+        "Hydra",
+        "Centaurus",
+        "Sagittarius",
+        "Great Annihilator",
+        "Andromeda",
+        "Lyra",
+        "Capricorn",
+        "Triangulum",
+        "Large Magellanic Cloud",
+        "Cirrus Major",
+        "Cirrus Minor",
+        "Cassiopeia",
+        "Orion",
+        "Aquarius",
+        "Pisces",
+        "Scorpio",
+        "Libra",
+        "Leo",
+        "Virgo",
+        "Pleiades",
+        "Sirius",
+        "Gemini"
+      ],
+      "value_items_source": "measured: distinct runs of the 1001-point display-string sweep, in order",
+      "taper_method": "write sweep: setParamNormalized(id, t) then getParamStringByValue, original value restored",
+      "read_only_sweep_was_constant": true,
+      "read_only_sweep_constant_note": "getParamStringByValue returned the same string for every t, i.e. the plugin ignores the value argument and formats its current value. See taper_read_only for the evidence.",
+      "write_sweep_also_constant": false,
+      "string_after_restore": "Gemini",
+      "restored_cleanly": true,
+      "restored_cleanly_note": "true means that after the sweep, with every parameter set back to its snapshot value, this parameter formatted exactly as it did on the untouched instance. False means the plugin latched state the sweep could not undo, and this parameter's taper may be contaminated.",
+      "taper_read_only": [
+        {
+          "t": 0,
+          "string": "Gemini"
+        },
+        {
+          "t": 0.05,
+          "string": "Gemini"
+        },
+        {
+          "t": 0.1,
+          "string": "Gemini"
+        },
+        {
+          "t": 0.15,
+          "string": "Gemini"
+        },
+        {
+          "t": 0.2,
+          "string": "Gemini"
+        },
+        {
+          "t": 0.25,
+          "string": "Gemini"
+        },
+        {
+          "t": 0.3,
+          "string": "Gemini"
+        },
+        {
+          "t": 0.35,
+          "string": "Gemini"
+        },
+        {
+          "t": 0.4,
+          "string": "Gemini"
+        },
+        {
+          "t": 0.45,
+          "string": "Gemini"
+        },
+        {
+          "t": 0.5,
+          "string": "Gemini"
+        },
+        {
+          "t": 0.55,
+          "string": "Gemini"
+        },
+        {
+          "t": 0.6,
+          "string": "Gemini"
+        },
+        {
+          "t": 0.65,
+          "string": "Gemini"
+        },
+        {
+          "t": 0.7,
+          "string": "Gemini"
+        },
+        {
+          "t": 0.75,
+          "string": "Gemini"
+        },
+        {
+          "t": 0.8,
+          "string": "Gemini"
+        },
+        {
+          "t": 0.85,
+          "string": "Gemini"
+        },
+        {
+          "t": 0.9,
+          "string": "Gemini"
+        },
+        {
+          "t": 0.95,
+          "string": "Gemini"
+        },
+        {
+          "t": 1,
+          "string": "Gemini"
+        }
+      ],
+      "taper": [
+        {
+          "t": 0,
+          "string": "Gemini"
+        },
+        {
+          "t": 0.05,
+          "string": "Gemini"
+        },
+        {
+          "t": 0.1,
+          "string": "Hydra"
+        },
+        {
+          "t": 0.15,
+          "string": "Centaurus"
+        },
+        {
+          "t": 0.2,
+          "string": "Sagittarius"
+        },
+        {
+          "t": 0.25,
+          "string": "Andromeda"
+        },
+        {
+          "t": 0.3,
+          "string": "Lyra"
+        },
+        {
+          "t": 0.35,
+          "string": "Capricorn"
+        },
+        {
+          "t": 0.4,
+          "string": "Triangulum"
+        },
+        {
+          "t": 0.45,
+          "string": "Large Magellanic Cloud"
+        },
+        {
+          "t": 0.5,
+          "string": "Cirrus Minor"
+        },
+        {
+          "t": 0.55,
+          "string": "Cassiopeia"
+        },
+        {
+          "t": 0.6,
+          "string": "Orion"
+        },
+        {
+          "t": 0.65,
+          "string": "Aquarius"
+        },
+        {
+          "t": 0.7,
+          "string": "Pisces"
+        },
+        {
+          "t": 0.75,
+          "string": "Libra"
+        },
+        {
+          "t": 0.8,
+          "string": "Leo"
+        },
+        {
+          "t": 0.85,
+          "string": "Virgo"
+        },
+        {
+          "t": 0.9,
+          "string": "Pleiades"
+        },
+        {
+          "t": 0.95,
+          "string": "Sirius"
+        },
+        {
+          "t": 1,
+          "string": "Gemini"
+        }
+      ],
+      "string_plateaus": {
+        "sweep_points": 1001,
+        "method": "t = k/1000 for k in 0..1000, write sweep, consecutive equal strings collapsed",
+        "distinct_run_count": 23,
+        "runs": [
+          {
+            "run_index": 0,
+            "string": "Gemini",
+            "t_first": 0,
+            "t_last": 0.083,
+            "sample_count": 84
+          },
+          {
+            "run_index": 1,
+            "string": "Hydra",
+            "t_first": 0.084,
+            "t_last": 0.124,
+            "sample_count": 41
+          },
+          {
+            "run_index": 2,
+            "string": "Centaurus",
+            "t_first": 0.125,
+            "t_last": 0.166,
+            "sample_count": 42
+          },
+          {
+            "run_index": 3,
+            "string": "Sagittarius",
+            "t_first": 0.167,
+            "t_last": 0.208,
+            "sample_count": 42
+          },
+          {
+            "run_index": 4,
+            "string": "Great Annihilator",
+            "t_first": 0.209,
+            "t_last": 0.249,
+            "sample_count": 41
+          },
+          {
+            "run_index": 5,
+            "string": "Andromeda",
+            "t_first": 0.25,
+            "t_last": 0.291,
+            "sample_count": 42
+          },
+          {
+            "run_index": 6,
+            "string": "Lyra",
+            "t_first": 0.292,
+            "t_last": 0.333,
+            "sample_count": 42
+          },
+          {
+            "run_index": 7,
+            "string": "Capricorn",
+            "t_first": 0.334,
+            "t_last": 0.374,
+            "sample_count": 41
+          },
+          {
+            "run_index": 8,
+            "string": "Triangulum",
+            "t_first": 0.375,
+            "t_last": 0.416,
+            "sample_count": 42
+          },
+          {
+            "run_index": 9,
+            "string": "Large Magellanic Cloud",
+            "t_first": 0.417,
+            "t_last": 0.458,
+            "sample_count": 42
+          },
+          {
+            "run_index": 10,
+            "string": "Cirrus Major",
+            "t_first": 0.459,
+            "t_last": 0.499,
+            "sample_count": 41
+          },
+          {
+            "run_index": 11,
+            "string": "Cirrus Minor",
+            "t_first": 0.5,
+            "t_last": 0.541,
+            "sample_count": 42
+          },
+          {
+            "run_index": 12,
+            "string": "Cassiopeia",
+            "t_first": 0.542,
+            "t_last": 0.583,
+            "sample_count": 42
+          },
+          {
+            "run_index": 13,
+            "string": "Orion",
+            "t_first": 0.584,
+            "t_last": 0.624,
+            "sample_count": 41
+          },
+          {
+            "run_index": 14,
+            "string": "Aquarius",
+            "t_first": 0.625,
+            "t_last": 0.666,
+            "sample_count": 42
+          },
+          {
+            "run_index": 15,
+            "string": "Pisces",
+            "t_first": 0.667,
+            "t_last": 0.708,
+            "sample_count": 42
+          },
+          {
+            "run_index": 16,
+            "string": "Scorpio",
+            "t_first": 0.709,
+            "t_last": 0.749,
+            "sample_count": 41
+          },
+          {
+            "run_index": 17,
+            "string": "Libra",
+            "t_first": 0.75,
+            "t_last": 0.791,
+            "sample_count": 42
+          },
+          {
+            "run_index": 18,
+            "string": "Leo",
+            "t_first": 0.792,
+            "t_last": 0.833,
+            "sample_count": 42
+          },
+          {
+            "run_index": 19,
+            "string": "Virgo",
+            "t_first": 0.834,
+            "t_last": 0.874,
+            "sample_count": 41
+          },
+          {
+            "run_index": 20,
+            "string": "Pleiades",
+            "t_first": 0.875,
+            "t_last": 0.916,
+            "sample_count": 42
+          },
+          {
+            "run_index": 21,
+            "string": "Sirius",
+            "t_first": 0.917,
+            "t_last": 0.958,
+            "sample_count": 42
+          },
+          {
+            "run_index": 22,
+            "string": "Gemini",
+            "t_first": 0.959,
+            "t_last": 1,
+            "sample_count": 42
+          }
+        ],
+        "runs_omitted_reason": null
+      }
+    },
+    {
+      "index": 14,
+      "vst3_param_id": "1571",
+      "vst3_param_id_numeric": 1571,
+      "name": "Reserved1",
+      "label": null,
+      "label_note": "AudioProcessorParameter::getLabel() -> VST3 ParameterInfo::units. null means the plugin left that field empty; the unit is then only visible inside the display strings.",
+      "value_domain": "JUCE normalises every VST3 parameter to 0..1; min and max below are that normalised domain, not the plugin's real-world range. The real-world range is only observable through the display strings.",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "default_is_normalised": true,
+      "default_string": "0.0",
+      "current_value_untouched": 0,
+      "current_value_string_untouched": "0.0",
+      "num_steps": 2147483647,
+      "num_steps_is_juce_default_for_continuous": true,
+      "num_steps_note": "JUCE derives this from VST3 ParameterInfo::stepCount: stepCount 0 means 'continuous' and JUCE substitutes its default step count. A parameter that displays as an enum but reports the default step count is one the plugin declared continuous.",
+      "is_discrete": false,
+      "is_boolean": false,
+      "is_quantized_declared": false,
+      "is_bypass_parameter": false,
+      "is_automatable": true,
+      "is_meta_parameter": false,
+      "is_orientation_inverted": false,
+      "value_items_from_getAllValueStrings": null,
+      "value_items_from_getAllValueStrings_note": "JUCE 8's VST3Parameter::getAllValueStrings() returns {} unconditionally. A null here is a JUCE limitation, not a statement about the plugin. The measured string_plateaus below are the real item source.",
+      "value_items": [
+        "0.0",
+        "0.1",
+        "0.2",
+        "0.3",
+        "0.4",
+        "0.5",
+        "0.6",
+        "0.7",
+        "0.8",
+        "0.9",
+        "1.0"
+      ],
+      "value_items_source": "measured: distinct runs of the 1001-point display-string sweep, in order",
+      "taper_method": "write sweep: setParamNormalized(id, t) then getParamStringByValue, original value restored",
+      "read_only_sweep_was_constant": true,
+      "read_only_sweep_constant_note": "getParamStringByValue returned the same string for every t, i.e. the plugin ignores the value argument and formats its current value. See taper_read_only for the evidence.",
+      "write_sweep_also_constant": false,
+      "string_after_restore": "0.0",
+      "restored_cleanly": true,
+      "restored_cleanly_note": "true means that after the sweep, with every parameter set back to its snapshot value, this parameter formatted exactly as it did on the untouched instance. False means the plugin latched state the sweep could not undo, and this parameter's taper may be contaminated.",
+      "taper_read_only": [
+        {
+          "t": 0,
+          "string": "0.0"
+        },
+        {
+          "t": 0.05,
+          "string": "0.0"
+        },
+        {
+          "t": 0.1,
+          "string": "0.0"
+        },
+        {
+          "t": 0.15,
+          "string": "0.0"
+        },
+        {
+          "t": 0.2,
+          "string": "0.0"
+        },
+        {
+          "t": 0.25,
+          "string": "0.0"
+        },
+        {
+          "t": 0.3,
+          "string": "0.0"
+        },
+        {
+          "t": 0.35,
+          "string": "0.0"
+        },
+        {
+          "t": 0.4,
+          "string": "0.0"
+        },
+        {
+          "t": 0.45,
+          "string": "0.0"
+        },
+        {
+          "t": 0.5,
+          "string": "0.0"
+        },
+        {
+          "t": 0.55,
+          "string": "0.0"
+        },
+        {
+          "t": 0.6,
+          "string": "0.0"
+        },
+        {
+          "t": 0.65,
+          "string": "0.0"
+        },
+        {
+          "t": 0.7,
+          "string": "0.0"
+        },
+        {
+          "t": 0.75,
+          "string": "0.0"
+        },
+        {
+          "t": 0.8,
+          "string": "0.0"
+        },
+        {
+          "t": 0.85,
+          "string": "0.0"
+        },
+        {
+          "t": 0.9,
+          "string": "0.0"
+        },
+        {
+          "t": 0.95,
+          "string": "0.0"
+        },
+        {
+          "t": 1,
+          "string": "0.0"
+        }
+      ],
+      "taper": [
+        {
+          "t": 0,
+          "string": "0.0"
+        },
+        {
+          "t": 0.05,
+          "string": "0.1"
+        },
+        {
+          "t": 0.1,
+          "string": "0.1"
+        },
+        {
+          "t": 0.15,
+          "string": "0.2"
+        },
+        {
+          "t": 0.2,
+          "string": "0.2"
+        },
+        {
+          "t": 0.25,
+          "string": "0.2"
+        },
+        {
+          "t": 0.3,
+          "string": "0.3"
+        },
+        {
+          "t": 0.35,
+          "string": "0.3"
+        },
+        {
+          "t": 0.4,
+          "string": "0.4"
+        },
+        {
+          "t": 0.45,
+          "string": "0.4"
+        },
+        {
+          "t": 0.5,
+          "string": "0.5"
+        },
+        {
+          "t": 0.55,
+          "string": "0.6"
+        },
+        {
+          "t": 0.6,
+          "string": "0.6"
+        },
+        {
+          "t": 0.65,
+          "string": "0.6"
+        },
+        {
+          "t": 0.7,
+          "string": "0.7"
+        },
+        {
+          "t": 0.75,
+          "string": "0.8"
+        },
+        {
+          "t": 0.8,
+          "string": "0.8"
+        },
+        {
+          "t": 0.85,
+          "string": "0.9"
+        },
+        {
+          "t": 0.9,
+          "string": "0.9"
+        },
+        {
+          "t": 0.95,
+          "string": "0.9"
+        },
+        {
+          "t": 1,
+          "string": "1.0"
+        }
+      ],
+      "string_plateaus": {
+        "sweep_points": 1001,
+        "method": "t = k/1000 for k in 0..1000, write sweep, consecutive equal strings collapsed",
+        "distinct_run_count": 11,
+        "runs": [
+          {
+            "run_index": 0,
+            "string": "0.0",
+            "t_first": 0,
+            "t_last": 0.049,
+            "sample_count": 50
+          },
+          {
+            "run_index": 1,
+            "string": "0.1",
+            "t_first": 0.05,
+            "t_last": 0.149,
+            "sample_count": 100
+          },
+          {
+            "run_index": 2,
+            "string": "0.2",
+            "t_first": 0.15,
+            "t_last": 0.25,
+            "sample_count": 101
+          },
+          {
+            "run_index": 3,
+            "string": "0.3",
+            "t_first": 0.251,
+            "t_last": 0.35,
+            "sample_count": 100
+          },
+          {
+            "run_index": 4,
+            "string": "0.4",
+            "t_first": 0.351,
+            "t_last": 0.45,
+            "sample_count": 100
+          },
+          {
+            "run_index": 5,
+            "string": "0.5",
+            "t_first": 0.451,
+            "t_last": 0.549,
+            "sample_count": 99
+          },
+          {
+            "run_index": 6,
+            "string": "0.6",
+            "t_first": 0.55,
+            "t_last": 0.65,
+            "sample_count": 101
+          },
+          {
+            "run_index": 7,
+            "string": "0.7",
+            "t_first": 0.651,
+            "t_last": 0.749,
+            "sample_count": 99
+          },
+          {
+            "run_index": 8,
+            "string": "0.8",
+            "t_first": 0.75,
+            "t_last": 0.849,
+            "sample_count": 100
+          },
+          {
+            "run_index": 9,
+            "string": "0.9",
+            "t_first": 0.85,
+            "t_last": 0.95,
+            "sample_count": 101
+          },
+          {
+            "run_index": 10,
+            "string": "1.0",
+            "t_first": 0.951,
+            "t_last": 1,
+            "sample_count": 50
+          }
+        ],
+        "runs_omitted_reason": null
+      }
+    },
+    {
+      "index": 15,
+      "vst3_param_id": "1572",
+      "vst3_param_id_numeric": 1572,
+      "name": "Reserved2",
+      "label": null,
+      "label_note": "AudioProcessorParameter::getLabel() -> VST3 ParameterInfo::units. null means the plugin left that field empty; the unit is then only visible inside the display strings.",
+      "value_domain": "JUCE normalises every VST3 parameter to 0..1; min and max below are that normalised domain, not the plugin's real-world range. The real-world range is only observable through the display strings.",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "default_is_normalised": true,
+      "default_string": "0.0 %",
+      "current_value_untouched": 0,
+      "current_value_string_untouched": "0.0 %",
+      "num_steps": 2147483647,
+      "num_steps_is_juce_default_for_continuous": true,
+      "num_steps_note": "JUCE derives this from VST3 ParameterInfo::stepCount: stepCount 0 means 'continuous' and JUCE substitutes its default step count. A parameter that displays as an enum but reports the default step count is one the plugin declared continuous.",
+      "is_discrete": false,
+      "is_boolean": false,
+      "is_quantized_declared": false,
+      "is_bypass_parameter": false,
+      "is_automatable": true,
+      "is_meta_parameter": false,
+      "is_orientation_inverted": false,
+      "value_items_from_getAllValueStrings": null,
+      "value_items_from_getAllValueStrings_note": "JUCE 8's VST3Parameter::getAllValueStrings() returns {} unconditionally. A null here is a JUCE limitation, not a statement about the plugin. The measured string_plateaus below are the real item source.",
+      "value_items": [
+        "0.0 %",
+        "0.1 %",
+        "0.2 %",
+        "0.3 %",
+        "0.4 %",
+        "0.5 %",
+        "0.6 %",
+        "0.7 %",
+        "0.8 %",
+        "0.9 %",
+        "1.0 %"
+      ],
+      "value_items_source": "measured: distinct runs of the 1001-point display-string sweep, in order",
+      "taper_method": "write sweep: setParamNormalized(id, t) then getParamStringByValue, original value restored",
+      "read_only_sweep_was_constant": true,
+      "read_only_sweep_constant_note": "getParamStringByValue returned the same string for every t, i.e. the plugin ignores the value argument and formats its current value. See taper_read_only for the evidence.",
+      "write_sweep_also_constant": false,
+      "string_after_restore": "0.0 %",
+      "restored_cleanly": true,
+      "restored_cleanly_note": "true means that after the sweep, with every parameter set back to its snapshot value, this parameter formatted exactly as it did on the untouched instance. False means the plugin latched state the sweep could not undo, and this parameter's taper may be contaminated.",
+      "taper_read_only": [
+        {
+          "t": 0,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.05,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.1,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.15,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.2,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.25,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.3,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.35,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.4,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.45,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.5,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.55,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.6,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.65,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.7,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.75,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.8,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.85,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.9,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.95,
+          "string": "0.0 %"
+        },
+        {
+          "t": 1,
+          "string": "0.0 %"
+        }
+      ],
+      "taper": [
+        {
+          "t": 0,
+          "string": "0.0 %"
+        },
+        {
+          "t": 0.05,
+          "string": "0.1 %"
+        },
+        {
+          "t": 0.1,
+          "string": "0.1 %"
+        },
+        {
+          "t": 0.15,
+          "string": "0.2 %"
+        },
+        {
+          "t": 0.2,
+          "string": "0.2 %"
+        },
+        {
+          "t": 0.25,
+          "string": "0.2 %"
+        },
+        {
+          "t": 0.3,
+          "string": "0.3 %"
+        },
+        {
+          "t": 0.35,
+          "string": "0.3 %"
+        },
+        {
+          "t": 0.4,
+          "string": "0.4 %"
+        },
+        {
+          "t": 0.45,
+          "string": "0.4 %"
+        },
+        {
+          "t": 0.5,
+          "string": "0.5 %"
+        },
+        {
+          "t": 0.55,
+          "string": "0.6 %"
+        },
+        {
+          "t": 0.6,
+          "string": "0.6 %"
+        },
+        {
+          "t": 0.65,
+          "string": "0.6 %"
+        },
+        {
+          "t": 0.7,
+          "string": "0.7 %"
+        },
+        {
+          "t": 0.75,
+          "string": "0.8 %"
+        },
+        {
+          "t": 0.8,
+          "string": "0.8 %"
+        },
+        {
+          "t": 0.85,
+          "string": "0.9 %"
+        },
+        {
+          "t": 0.9,
+          "string": "0.9 %"
+        },
+        {
+          "t": 0.95,
+          "string": "0.9 %"
+        },
+        {
+          "t": 1,
+          "string": "1.0 %"
+        }
+      ],
+      "string_plateaus": {
+        "sweep_points": 1001,
+        "method": "t = k/1000 for k in 0..1000, write sweep, consecutive equal strings collapsed",
+        "distinct_run_count": 11,
+        "runs": [
+          {
+            "run_index": 0,
+            "string": "0.0 %",
+            "t_first": 0,
+            "t_last": 0.049,
+            "sample_count": 50
+          },
+          {
+            "run_index": 1,
+            "string": "0.1 %",
+            "t_first": 0.05,
+            "t_last": 0.149,
+            "sample_count": 100
+          },
+          {
+            "run_index": 2,
+            "string": "0.2 %",
+            "t_first": 0.15,
+            "t_last": 0.25,
+            "sample_count": 101
+          },
+          {
+            "run_index": 3,
+            "string": "0.3 %",
+            "t_first": 0.251,
+            "t_last": 0.35,
+            "sample_count": 100
+          },
+          {
+            "run_index": 4,
+            "string": "0.4 %",
+            "t_first": 0.351,
+            "t_last": 0.45,
+            "sample_count": 100
+          },
+          {
+            "run_index": 5,
+            "string": "0.5 %",
+            "t_first": 0.451,
+            "t_last": 0.549,
+            "sample_count": 99
+          },
+          {
+            "run_index": 6,
+            "string": "0.6 %",
+            "t_first": 0.55,
+            "t_last": 0.65,
+            "sample_count": 101
+          },
+          {
+            "run_index": 7,
+            "string": "0.7 %",
+            "t_first": 0.651,
+            "t_last": 0.749,
+            "sample_count": 99
+          },
+          {
+            "run_index": 8,
+            "string": "0.8 %",
+            "t_first": 0.75,
+            "t_last": 0.849,
+            "sample_count": 100
+          },
+          {
+            "run_index": 9,
+            "string": "0.9 %",
+            "t_first": 0.85,
+            "t_last": 0.95,
+            "sample_count": 101
+          },
+          {
+            "run_index": 10,
+            "string": "1.0 %",
+            "t_first": 0.951,
+            "t_last": 1,
+            "sample_count": 50
+          }
+        ],
+        "runs_omitted_reason": null
+      }
+    },
+    {
+      "index": 16,
+      "vst3_param_id": "1573",
+      "vst3_param_id_numeric": 1573,
+      "name": "Reserved3",
+      "label": null,
+      "label_note": "AudioProcessorParameter::getLabel() -> VST3 ParameterInfo::units. null means the plugin left that field empty; the unit is then only visible inside the display strings.",
+      "value_domain": "JUCE normalises every VST3 parameter to 0..1; min and max below are that normalised domain, not the plugin's real-world range. The real-world range is only observable through the display strings.",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "default_is_normalised": true,
+      "default_string": "0.0",
+      "current_value_untouched": 0,
+      "current_value_string_untouched": "0.0",
+      "num_steps": 2147483647,
+      "num_steps_is_juce_default_for_continuous": true,
+      "num_steps_note": "JUCE derives this from VST3 ParameterInfo::stepCount: stepCount 0 means 'continuous' and JUCE substitutes its default step count. A parameter that displays as an enum but reports the default step count is one the plugin declared continuous.",
+      "is_discrete": false,
+      "is_boolean": false,
+      "is_quantized_declared": false,
+      "is_bypass_parameter": false,
+      "is_automatable": true,
+      "is_meta_parameter": false,
+      "is_orientation_inverted": false,
+      "value_items_from_getAllValueStrings": null,
+      "value_items_from_getAllValueStrings_note": "JUCE 8's VST3Parameter::getAllValueStrings() returns {} unconditionally. A null here is a JUCE limitation, not a statement about the plugin. The measured string_plateaus below are the real item source.",
+      "value_items": [
+        "0.0",
+        "0.1",
+        "0.2",
+        "0.3",
+        "0.4",
+        "0.5",
+        "0.6",
+        "0.7",
+        "0.8",
+        "0.9",
+        "1.0"
+      ],
+      "value_items_source": "measured: distinct runs of the 1001-point display-string sweep, in order",
+      "taper_method": "write sweep: setParamNormalized(id, t) then getParamStringByValue, original value restored",
+      "read_only_sweep_was_constant": true,
+      "read_only_sweep_constant_note": "getParamStringByValue returned the same string for every t, i.e. the plugin ignores the value argument and formats its current value. See taper_read_only for the evidence.",
+      "write_sweep_also_constant": false,
+      "string_after_restore": "0.0",
+      "restored_cleanly": true,
+      "restored_cleanly_note": "true means that after the sweep, with every parameter set back to its snapshot value, this parameter formatted exactly as it did on the untouched instance. False means the plugin latched state the sweep could not undo, and this parameter's taper may be contaminated.",
+      "taper_read_only": [
+        {
+          "t": 0,
+          "string": "0.0"
+        },
+        {
+          "t": 0.05,
+          "string": "0.0"
+        },
+        {
+          "t": 0.1,
+          "string": "0.0"
+        },
+        {
+          "t": 0.15,
+          "string": "0.0"
+        },
+        {
+          "t": 0.2,
+          "string": "0.0"
+        },
+        {
+          "t": 0.25,
+          "string": "0.0"
+        },
+        {
+          "t": 0.3,
+          "string": "0.0"
+        },
+        {
+          "t": 0.35,
+          "string": "0.0"
+        },
+        {
+          "t": 0.4,
+          "string": "0.0"
+        },
+        {
+          "t": 0.45,
+          "string": "0.0"
+        },
+        {
+          "t": 0.5,
+          "string": "0.0"
+        },
+        {
+          "t": 0.55,
+          "string": "0.0"
+        },
+        {
+          "t": 0.6,
+          "string": "0.0"
+        },
+        {
+          "t": 0.65,
+          "string": "0.0"
+        },
+        {
+          "t": 0.7,
+          "string": "0.0"
+        },
+        {
+          "t": 0.75,
+          "string": "0.0"
+        },
+        {
+          "t": 0.8,
+          "string": "0.0"
+        },
+        {
+          "t": 0.85,
+          "string": "0.0"
+        },
+        {
+          "t": 0.9,
+          "string": "0.0"
+        },
+        {
+          "t": 0.95,
+          "string": "0.0"
+        },
+        {
+          "t": 1,
+          "string": "0.0"
+        }
+      ],
+      "taper": [
+        {
+          "t": 0,
+          "string": "0.0"
+        },
+        {
+          "t": 0.05,
+          "string": "0.1"
+        },
+        {
+          "t": 0.1,
+          "string": "0.1"
+        },
+        {
+          "t": 0.15,
+          "string": "0.2"
+        },
+        {
+          "t": 0.2,
+          "string": "0.2"
+        },
+        {
+          "t": 0.25,
+          "string": "0.2"
+        },
+        {
+          "t": 0.3,
+          "string": "0.3"
+        },
+        {
+          "t": 0.35,
+          "string": "0.3"
+        },
+        {
+          "t": 0.4,
+          "string": "0.4"
+        },
+        {
+          "t": 0.45,
+          "string": "0.4"
+        },
+        {
+          "t": 0.5,
+          "string": "0.5"
+        },
+        {
+          "t": 0.55,
+          "string": "0.6"
+        },
+        {
+          "t": 0.6,
+          "string": "0.6"
+        },
+        {
+          "t": 0.65,
+          "string": "0.6"
+        },
+        {
+          "t": 0.7,
+          "string": "0.7"
+        },
+        {
+          "t": 0.75,
+          "string": "0.8"
+        },
+        {
+          "t": 0.8,
+          "string": "0.8"
+        },
+        {
+          "t": 0.85,
+          "string": "0.9"
+        },
+        {
+          "t": 0.9,
+          "string": "0.9"
+        },
+        {
+          "t": 0.95,
+          "string": "0.9"
+        },
+        {
+          "t": 1,
+          "string": "1.0"
+        }
+      ],
+      "string_plateaus": {
+        "sweep_points": 1001,
+        "method": "t = k/1000 for k in 0..1000, write sweep, consecutive equal strings collapsed",
+        "distinct_run_count": 11,
+        "runs": [
+          {
+            "run_index": 0,
+            "string": "0.0",
+            "t_first": 0,
+            "t_last": 0.049,
+            "sample_count": 50
+          },
+          {
+            "run_index": 1,
+            "string": "0.1",
+            "t_first": 0.05,
+            "t_last": 0.149,
+            "sample_count": 100
+          },
+          {
+            "run_index": 2,
+            "string": "0.2",
+            "t_first": 0.15,
+            "t_last": 0.25,
+            "sample_count": 101
+          },
+          {
+            "run_index": 3,
+            "string": "0.3",
+            "t_first": 0.251,
+            "t_last": 0.35,
+            "sample_count": 100
+          },
+          {
+            "run_index": 4,
+            "string": "0.4",
+            "t_first": 0.351,
+            "t_last": 0.45,
+            "sample_count": 100
+          },
+          {
+            "run_index": 5,
+            "string": "0.5",
+            "t_first": 0.451,
+            "t_last": 0.549,
+            "sample_count": 99
+          },
+          {
+            "run_index": 6,
+            "string": "0.6",
+            "t_first": 0.55,
+            "t_last": 0.65,
+            "sample_count": 101
+          },
+          {
+            "run_index": 7,
+            "string": "0.7",
+            "t_first": 0.651,
+            "t_last": 0.749,
+            "sample_count": 99
+          },
+          {
+            "run_index": 8,
+            "string": "0.8",
+            "t_first": 0.75,
+            "t_last": 0.849,
+            "sample_count": 100
+          },
+          {
+            "run_index": 9,
+            "string": "0.9",
+            "t_first": 0.85,
+            "t_last": 0.95,
+            "sample_count": 101
+          },
+          {
+            "run_index": 10,
+            "string": "1.0",
+            "t_first": 0.951,
+            "t_last": 1,
+            "sample_count": 50
+          }
+        ],
+        "runs_omitted_reason": null
+      }
+    },
+    {
+      "index": 17,
+      "vst3_param_id": "1574",
+      "vst3_param_id_numeric": 1574,
+      "name": "Reserved4",
+      "label": null,
+      "label_note": "AudioProcessorParameter::getLabel() -> VST3 ParameterInfo::units. null means the plugin left that field empty; the unit is then only visible inside the display strings.",
+      "value_domain": "JUCE normalises every VST3 parameter to 0..1; min and max below are that normalised domain, not the plugin's real-world range. The real-world range is only observable through the display strings.",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "default_is_normalised": true,
+      "default_string": "0.0",
+      "current_value_untouched": 0,
+      "current_value_string_untouched": "0.0",
+      "num_steps": 2147483647,
+      "num_steps_is_juce_default_for_continuous": true,
+      "num_steps_note": "JUCE derives this from VST3 ParameterInfo::stepCount: stepCount 0 means 'continuous' and JUCE substitutes its default step count. A parameter that displays as an enum but reports the default step count is one the plugin declared continuous.",
+      "is_discrete": false,
+      "is_boolean": false,
+      "is_quantized_declared": false,
+      "is_bypass_parameter": false,
+      "is_automatable": true,
+      "is_meta_parameter": false,
+      "is_orientation_inverted": false,
+      "value_items_from_getAllValueStrings": null,
+      "value_items_from_getAllValueStrings_note": "JUCE 8's VST3Parameter::getAllValueStrings() returns {} unconditionally. A null here is a JUCE limitation, not a statement about the plugin. The measured string_plateaus below are the real item source.",
+      "value_items": [
+        "0.0",
+        "0.1",
+        "0.2",
+        "0.3",
+        "0.4",
+        "0.5",
+        "0.6",
+        "0.7",
+        "0.8",
+        "0.9",
+        "1.0"
+      ],
+      "value_items_source": "measured: distinct runs of the 1001-point display-string sweep, in order",
+      "taper_method": "write sweep: setParamNormalized(id, t) then getParamStringByValue, original value restored",
+      "read_only_sweep_was_constant": true,
+      "read_only_sweep_constant_note": "getParamStringByValue returned the same string for every t, i.e. the plugin ignores the value argument and formats its current value. See taper_read_only for the evidence.",
+      "write_sweep_also_constant": false,
+      "string_after_restore": "0.0",
+      "restored_cleanly": true,
+      "restored_cleanly_note": "true means that after the sweep, with every parameter set back to its snapshot value, this parameter formatted exactly as it did on the untouched instance. False means the plugin latched state the sweep could not undo, and this parameter's taper may be contaminated.",
+      "taper_read_only": [
+        {
+          "t": 0,
+          "string": "0.0"
+        },
+        {
+          "t": 0.05,
+          "string": "0.0"
+        },
+        {
+          "t": 0.1,
+          "string": "0.0"
+        },
+        {
+          "t": 0.15,
+          "string": "0.0"
+        },
+        {
+          "t": 0.2,
+          "string": "0.0"
+        },
+        {
+          "t": 0.25,
+          "string": "0.0"
+        },
+        {
+          "t": 0.3,
+          "string": "0.0"
+        },
+        {
+          "t": 0.35,
+          "string": "0.0"
+        },
+        {
+          "t": 0.4,
+          "string": "0.0"
+        },
+        {
+          "t": 0.45,
+          "string": "0.0"
+        },
+        {
+          "t": 0.5,
+          "string": "0.0"
+        },
+        {
+          "t": 0.55,
+          "string": "0.0"
+        },
+        {
+          "t": 0.6,
+          "string": "0.0"
+        },
+        {
+          "t": 0.65,
+          "string": "0.0"
+        },
+        {
+          "t": 0.7,
+          "string": "0.0"
+        },
+        {
+          "t": 0.75,
+          "string": "0.0"
+        },
+        {
+          "t": 0.8,
+          "string": "0.0"
+        },
+        {
+          "t": 0.85,
+          "string": "0.0"
+        },
+        {
+          "t": 0.9,
+          "string": "0.0"
+        },
+        {
+          "t": 0.95,
+          "string": "0.0"
+        },
+        {
+          "t": 1,
+          "string": "0.0"
+        }
+      ],
+      "taper": [
+        {
+          "t": 0,
+          "string": "0.0"
+        },
+        {
+          "t": 0.05,
+          "string": "0.1"
+        },
+        {
+          "t": 0.1,
+          "string": "0.1"
+        },
+        {
+          "t": 0.15,
+          "string": "0.2"
+        },
+        {
+          "t": 0.2,
+          "string": "0.2"
+        },
+        {
+          "t": 0.25,
+          "string": "0.2"
+        },
+        {
+          "t": 0.3,
+          "string": "0.3"
+        },
+        {
+          "t": 0.35,
+          "string": "0.3"
+        },
+        {
+          "t": 0.4,
+          "string": "0.4"
+        },
+        {
+          "t": 0.45,
+          "string": "0.4"
+        },
+        {
+          "t": 0.5,
+          "string": "0.5"
+        },
+        {
+          "t": 0.55,
+          "string": "0.6"
+        },
+        {
+          "t": 0.6,
+          "string": "0.6"
+        },
+        {
+          "t": 0.65,
+          "string": "0.6"
+        },
+        {
+          "t": 0.7,
+          "string": "0.7"
+        },
+        {
+          "t": 0.75,
+          "string": "0.8"
+        },
+        {
+          "t": 0.8,
+          "string": "0.8"
+        },
+        {
+          "t": 0.85,
+          "string": "0.9"
+        },
+        {
+          "t": 0.9,
+          "string": "0.9"
+        },
+        {
+          "t": 0.95,
+          "string": "0.9"
+        },
+        {
+          "t": 1,
+          "string": "1.0"
+        }
+      ],
+      "string_plateaus": {
+        "sweep_points": 1001,
+        "method": "t = k/1000 for k in 0..1000, write sweep, consecutive equal strings collapsed",
+        "distinct_run_count": 11,
+        "runs": [
+          {
+            "run_index": 0,
+            "string": "0.0",
+            "t_first": 0,
+            "t_last": 0.049,
+            "sample_count": 50
+          },
+          {
+            "run_index": 1,
+            "string": "0.1",
+            "t_first": 0.05,
+            "t_last": 0.149,
+            "sample_count": 100
+          },
+          {
+            "run_index": 2,
+            "string": "0.2",
+            "t_first": 0.15,
+            "t_last": 0.25,
+            "sample_count": 101
+          },
+          {
+            "run_index": 3,
+            "string": "0.3",
+            "t_first": 0.251,
+            "t_last": 0.35,
+            "sample_count": 100
+          },
+          {
+            "run_index": 4,
+            "string": "0.4",
+            "t_first": 0.351,
+            "t_last": 0.45,
+            "sample_count": 100
+          },
+          {
+            "run_index": 5,
+            "string": "0.5",
+            "t_first": 0.451,
+            "t_last": 0.549,
+            "sample_count": 99
+          },
+          {
+            "run_index": 6,
+            "string": "0.6",
+            "t_first": 0.55,
+            "t_last": 0.65,
+            "sample_count": 101
+          },
+          {
+            "run_index": 7,
+            "string": "0.7",
+            "t_first": 0.651,
+            "t_last": 0.749,
+            "sample_count": 99
+          },
+          {
+            "run_index": 8,
+            "string": "0.8",
+            "t_first": 0.75,
+            "t_last": 0.849,
+            "sample_count": 100
+          },
+          {
+            "run_index": 9,
+            "string": "0.9",
+            "t_first": 0.85,
+            "t_last": 0.95,
+            "sample_count": 101
+          },
+          {
+            "run_index": 10,
+            "string": "1.0",
+            "t_first": 0.951,
+            "t_last": 1,
+            "sample_count": 50
+          }
+        ],
+        "runs_omitted_reason": null
+      }
+    },
+    {
+      "index": 18,
+      "vst3_param_id": "18",
+      "vst3_param_id_numeric": 18,
+      "name": "Bypass",
+      "label": null,
+      "label_note": "AudioProcessorParameter::getLabel() -> VST3 ParameterInfo::units. null means the plugin left that field empty; the unit is then only visible inside the display strings.",
+      "value_domain": "JUCE normalises every VST3 parameter to 0..1; min and max below are that normalised domain, not the plugin's real-world range. The real-world range is only observable through the display strings.",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "default_is_normalised": true,
+      "default_string": "Off",
+      "current_value_untouched": 0,
+      "current_value_string_untouched": "Off",
+      "num_steps": 2,
+      "num_steps_is_juce_default_for_continuous": false,
+      "num_steps_note": "JUCE derives this from VST3 ParameterInfo::stepCount: stepCount 0 means 'continuous' and JUCE substitutes its default step count. A parameter that displays as an enum but reports the default step count is one the plugin declared continuous.",
+      "is_discrete": true,
+      "is_boolean": false,
+      "is_quantized_declared": true,
+      "is_bypass_parameter": true,
+      "is_automatable": true,
+      "is_meta_parameter": false,
+      "is_orientation_inverted": false,
+      "value_items_from_getAllValueStrings": null,
+      "value_items_from_getAllValueStrings_note": "JUCE 8's VST3Parameter::getAllValueStrings() returns {} unconditionally. A null here is a JUCE limitation, not a statement about the plugin. The measured string_plateaus below are the real item source.",
+      "value_items": [
+        "Off",
+        "On"
+      ],
+      "value_items_source": "measured: distinct runs of the 1001-point display-string sweep, in order",
+      "taper_method": "read only: getParamStringByValue(id, t), plugin not touched",
+      "read_only_sweep_was_constant": false,
+      "read_only_sweep_constant_note": null,
+      "write_sweep_also_constant": false,
+      "string_after_restore": "Off",
+      "restored_cleanly": true,
+      "restored_cleanly_note": "true means that after the sweep, with every parameter set back to its snapshot value, this parameter formatted exactly as it did on the untouched instance. False means the plugin latched state the sweep could not undo, and this parameter's taper may be contaminated.",
+      "taper_read_only": [
+        {
+          "t": 0,
+          "string": "Off"
+        },
+        {
+          "t": 0.05,
+          "string": "Off"
+        },
+        {
+          "t": 0.1,
+          "string": "Off"
+        },
+        {
+          "t": 0.15,
+          "string": "Off"
+        },
+        {
+          "t": 0.2,
+          "string": "Off"
+        },
+        {
+          "t": 0.25,
+          "string": "Off"
+        },
+        {
+          "t": 0.3,
+          "string": "Off"
+        },
+        {
+          "t": 0.35,
+          "string": "Off"
+        },
+        {
+          "t": 0.4,
+          "string": "Off"
+        },
+        {
+          "t": 0.45,
+          "string": "Off"
+        },
+        {
+          "t": 0.5,
+          "string": "On"
+        },
+        {
+          "t": 0.55,
+          "string": "On"
+        },
+        {
+          "t": 0.6,
+          "string": "On"
+        },
+        {
+          "t": 0.65,
+          "string": "On"
+        },
+        {
+          "t": 0.7,
+          "string": "On"
+        },
+        {
+          "t": 0.75,
+          "string": "On"
+        },
+        {
+          "t": 0.8,
+          "string": "On"
+        },
+        {
+          "t": 0.85,
+          "string": "On"
+        },
+        {
+          "t": 0.9,
+          "string": "On"
+        },
+        {
+          "t": 0.95,
+          "string": "On"
+        },
+        {
+          "t": 1,
+          "string": "On"
+        }
+      ],
+      "taper": [
+        {
+          "t": 0,
+          "string": "Off"
+        },
+        {
+          "t": 0.05,
+          "string": "Off"
+        },
+        {
+          "t": 0.1,
+          "string": "Off"
+        },
+        {
+          "t": 0.15,
+          "string": "Off"
+        },
+        {
+          "t": 0.2,
+          "string": "Off"
+        },
+        {
+          "t": 0.25,
+          "string": "Off"
+        },
+        {
+          "t": 0.3,
+          "string": "Off"
+        },
+        {
+          "t": 0.35,
+          "string": "Off"
+        },
+        {
+          "t": 0.4,
+          "string": "Off"
+        },
+        {
+          "t": 0.45,
+          "string": "Off"
+        },
+        {
+          "t": 0.5,
+          "string": "On"
+        },
+        {
+          "t": 0.55,
+          "string": "On"
+        },
+        {
+          "t": 0.6,
+          "string": "On"
+        },
+        {
+          "t": 0.65,
+          "string": "On"
+        },
+        {
+          "t": 0.7,
+          "string": "On"
+        },
+        {
+          "t": 0.75,
+          "string": "On"
+        },
+        {
+          "t": 0.8,
+          "string": "On"
+        },
+        {
+          "t": 0.85,
+          "string": "On"
+        },
+        {
+          "t": 0.9,
+          "string": "On"
+        },
+        {
+          "t": 0.95,
+          "string": "On"
+        },
+        {
+          "t": 1,
+          "string": "On"
+        }
+      ],
+      "string_plateaus": {
+        "sweep_points": 1001,
+        "method": "t = k/1000 for k in 0..1000, read only, consecutive equal strings collapsed",
+        "distinct_run_count": 2,
+        "runs": [
+          {
+            "run_index": 0,
+            "string": "Off",
+            "t_first": 0,
+            "t_last": 0.499,
+            "sample_count": 500
+          },
+          {
+            "run_index": 1,
+            "string": "On",
+            "t_first": 0.5,
+            "t_last": 1,
+            "sample_count": 501
+          }
+        ],
+        "runs_omitted_reason": null
+      }
+    }
+  ]
+}
